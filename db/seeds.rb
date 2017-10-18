@@ -132,58 +132,58 @@ question10 = Question.create(description: Faker::Lorem.sentence, trivia_id: triv
 
 # create answers for trivia1
 3.times do
-  Answer.create(description: Faker::Lorem.word, correct: 0, question_id: question1.id)
+  Answer.create(description: Faker::Lorem.word, question_id: question1.id)
 end
 Answer.create(description: Faker::Lorem.word, correct: 1, question_id: question1.id)
 
 3.times do
-  Answer.create(description: Faker::Lorem.word, correct: 0, question_id: question2.id)
+  Answer.create(description: Faker::Lorem.word, question_id: question2.id)
 end
 Answer.create(description: Faker::Lorem.word, correct: 1, question_id: question2.id)
 
 3.times do
-  Answer.create(description: Faker::Lorem.word, correct: 0, question_id: question3.id)
+  Answer.create(description: Faker::Lorem.word, question_id: question3.id)
 end
 Answer.create(description: Faker::Lorem.word, correct: 1, question_id: question3.id)
 
 
 3.times do
-  Answer.create(description: Faker::Lorem.word, correct: 0, question_id: question4.id)
+  Answer.create(description: Faker::Lorem.word, question_id: question4.id)
 end
 Answer.create(description: Faker::Lorem.word, correct: 1, question_id: question4.id)
 
 
 3.times do
-  Answer.create(description: Faker::Lorem.word, correct: 0, question_id: question5.id)
+  Answer.create(description: Faker::Lorem.word, question_id: question5.id)
 end
 Answer.create(description: Faker::Lorem.word, correct: 1, question_id: question5.id)
 
 
 3.times do
-  Answer.create(description: Faker::Lorem.word, correct: 0, question_id: question6.id)
+  Answer.create(description: Faker::Lorem.word, question_id: question6.id)
 end
 Answer.create(description: Faker::Lorem.word, correct: 1, question_id: question6.id)
 
 
 3.times do
-  Answer.create(description: Faker::Lorem.word, correct: 0, question_id: question7.id)
+  Answer.create(description: Faker::Lorem.word, question_id: question7.id)
 end
 Answer.create(description: Faker::Lorem.word, correct: 1, question_id: question7.id)
 
 
 3.times do
-  Answer.create(description: Faker::Lorem.word, correct: 0, question_id: question8.id)
+  Answer.create(description: Faker::Lorem.word, question_id: question8.id)
 end
 Answer.create(description: Faker::Lorem.word, correct: 1, question_id: question8.id)
 
 
 3.times do
-  Answer.create(description: Faker::Lorem.word, correct: 0, question_id: question9.id)
+  Answer.create(description: Faker::Lorem.word, question_id: question9.id)
 end
 Answer.create(description: Faker::Lorem.word, correct: 1, question_id: question9.id)
 
 
 3.times do
-  Answer.create(description: Faker::Lorem.word, correct: 0, question_id: question10.id)
+  Answer.create(description: Faker::Lorem.word, question_id: question10.id)
 end
 Answer.create(description: Faker::Lorem.word, correct: 1, question_id: question10.id)
