@@ -33,19 +33,19 @@ ActiveRecord::Schema.define(version: 20171018045409) do
     t.datetime "updated_at", null: false
   end
 
-  create_table "trivia_sessions", force: :cascade do |t|
-    t.integer "user_id"
-    t.integer "trivia_id"
-    t.integer "score"
-    t.datetime "created_at", null: false
-    t.datetime "updated_at", null: false
-  end
-
-  create_table "trivias", force: :cascade do |t|
+  create_table "trivia", force: :cascade do |t|
     t.string "title"
     t.text "description"
     t.integer "topic_id"
     t.integer "user_id"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+  end
+
+  create_table "trivia_sessions", force: :cascade do |t|
+    t.integer "user_id"
+    t.integer "trivia_id"
+    t.integer "score"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
   end
