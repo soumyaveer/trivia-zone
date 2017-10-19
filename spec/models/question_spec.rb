@@ -55,5 +55,8 @@ describe Question do
       expect(question.answers).to match_array([@answer1, @answer2, @answer3, @answer4])
     end
 
+    it 'belongs to a trivia' do
+      expect(question.trivia).to eql(trivia)
+    end
   end
 end

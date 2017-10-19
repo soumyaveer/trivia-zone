@@ -31,4 +31,39 @@ describe Trivia do
       expect(trivia.errors[:title]).not_to be_present
     end
   end
+
+  describe 'relationship' do
+    let(:user) do
+      User.create(name: Faker::Name.name, email: Faker::Internet.email, password: "testpassword123")
+    end
+
+    let (:topic) do
+      Topic.create(name: Faker::Lorem.word)
+    end
+
+    let(:trivia) do
+      Trivia.create(title: Faker::Lorem.sentence,
+                    description: Faker::Lorem.paragraph,
+                    topic: topic,
+                    user: user)
+    end
+
+    before do
+      @question1 = Question.create(description: Faker::Lorem.sentence, trivia: trivia)
+      @question2 = Question.create(description: Faker::Lorem.sentence, trivia: trivia)
+      @question3 = Question.create(description: Faker::Lorem.sentence, trivia: trivia)
+    end
+
+    it ' has_many questions' do
+      expect(trivia.questions).to match_array([@question1, @question2, @question3])
+    end
+
+    it 'belongs to topic' do
+      expect(trivia.topic).to eql(topic)
+    end
+
+    it 'is created by a user' do
+      expect(trivia.user).to eql(user)
+    end
+  end
 end
