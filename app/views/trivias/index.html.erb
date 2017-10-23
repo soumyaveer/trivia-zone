@@ -1,0 +1,11 @@
+<div class="row">
+  <div class="col-sm-8 col-offset-2">
+    <h2>Trivia Topics:</h2>
+    <ul class="list-unstyled">
+      <% @trivias.each do |trivia| %>
+      <li><%= link_to trivia.title, topic_trivia_path(@topic, trivia) %></li>
+      <% end %>
+    </ul>
+
+  </div>
+</div>

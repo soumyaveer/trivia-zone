@@ -1,0 +1,17 @@
+<div class="row">
+  <div class="col-sm-8 col-offset-2">
+    <h2>Trivia: <%= @trivia.title  %></h2>
+    <ul>
+      <% @questions.each do |question| %>
+        <li>
+          <%= question.description + "?"%>
+          <ul>
+            <% question.answers.each do |answer| %>
+              <li><%= answer.description %></li>
+              <% end %>
+          </ul>
+        </li>
+      <% end %>
+    </ul>
+  </div>
+</div>
