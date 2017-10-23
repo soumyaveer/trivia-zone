@@ -5,6 +5,7 @@ class TriviasController < ApplicationController
   end
 
   def show
+    @topic = Topic.find_by(id: params[:topic_id])
     @trivia = Trivia.find(params[:id])
     @questions = @trivia.questions
     # @answers = @questions.answers
