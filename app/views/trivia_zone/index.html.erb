@@ -1,15 +1,9 @@
 <div class="row">
-  <div class="col-sm-12 text-center">
-    <h1>Welcome to Trivia Zone</h1>
-    <h4><%= link_to "Login to your account", new_user_session_path %></h4>
-    <h4><%= link_to "Login in with FB", "#"%></h4>
-
-    <br>
-
-    <p>Don't have an account?</p>
-    <p>Create one now!</p>
-    <h4><%= link_to "Sign Up", new_user_registration_path %></h4>
-  </div>
+  <% if user_signed_in? %>
+    <%= render "homepage" %>
+  <% else %>
+    <%= render "sign_in_or_sign_up" %>
+  <% end %>
 </div>
 
 
