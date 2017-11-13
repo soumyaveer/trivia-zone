@@ -14,6 +14,20 @@ class TriviasController < ApplicationController
     # calculate and add results here
   end
 
+  def new
+    @trivia = Trivia.new
+  end
+
+  def create
+    @topic = Topic.find_by(id: params[:topic_id])
+    @trivia = Trivia.new(title: params[:title], description: params[:description], topic_id: @topic.id, user_id: current_user.id)
+    if @trivia.save
+      redirect_to topic_trivia_path(@topic, @trivia)
+    else
+      render :new
+    end
+  end
+  
   private
 
   def load_topic
