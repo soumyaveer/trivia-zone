@@ -4,6 +4,10 @@ Rails.application.routes.draw do
   root 'trivia_zone#index'
   resources :trivia_zone, only: [:index]
   resources :topics do
-    resources :trivias
+    resources :trivias do
+      member do
+        get :results
+      end
+    end
   end
 end
