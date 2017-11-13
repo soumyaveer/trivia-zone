@@ -6,7 +6,7 @@ Rails.application.routes.draw do
   resources :topics do
     resources :trivias do
       member do
-        get :results
+        get :result
       end
     end
   end

@@ -9,4 +9,8 @@ class TriviasController < ApplicationController
     @trivia = Trivia.find(params[:id])
     @questions = @trivia.questions
   end
+
+  def result
+    
+  end
 end
