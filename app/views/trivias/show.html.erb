@@ -3,17 +3,29 @@
     <h2>Topic: <%= @topic.name  %></h2>
     <h3>Trivia: <%= @trivia.title  %></h3>
     <h3>Description: <%= @trivia.description %></h3>
-    <ol>
-      <% @questions.each do |question| %>
-        <li>
-          <%= question.description + "?"%>
+    <%= form_for @trivia, url: result_topic_trivia_path(@topic) , method: :post do |f| %>
+      <div>
+        <% @questions.each do |question| %>
           <ul>
-            <% question.answers.each do |answer| %>
-              <li><%= answer.description %></li>
-              <% end %>
+            <li>
+              <%= question.description + "?"%>
+              <div>
+                <% question.answers.each do |answer| %>
+                  <div>
+                    <%= f.radio_button :description, answer.description %>
+                    <%= answer.description %>
+                  </div>
+                <% end %>
+              </div>
+            </li>
           </ul>
-        </li>
-      <% end %>
-    </ol>
+        <% end %>
+      </div>
+
+      <div>
+        <%= f.submit "Submit" %>
+      </div>
+
+    <% end %>
   </div>
 </div>

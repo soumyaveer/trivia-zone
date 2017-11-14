@@ -1,20 +1,25 @@
-<div class="col-sm-8 col-sm-offset-4">
-  <h2>Played Trivias:</h2>
-  <table>
+<div class="col-sm-8 col-sm-offset-2">
+  <h2>Welcome <%= current_user.name%></h2>
+  <h3>Played Trivias:</h3>
+  <table class="table table-striped table-bordered">
     <tr>
       <th>Name</th>
       <th>Score</th>
     </tr>
+    <% @trivia_sessions.each do |trivia_session| %>
     <tr>
-      <% @trivias.each do |trivia| %>
-        <td><%= trivia.title %></td>
-        <td><%= trivia.score %></td>
-      <% end %>
+        <td>
+          <%= trivia_session.trivia.title %>
+        </td>
+        <td><%= trivia_session.score %></td>
     </tr>
+    <% end %>
   </table>
+</div>
 
-  <%= link_to "Play Trivia", topics_url %>
-  <%= link_to "Create a Trivia", new_topic_trivia(@topic) %>
-  <%= link_to "My Created Trivias", "#" %>
+<div class="col-sm-2">
+  <%= link_to "Logout", destroy_user_session_url %> <br>
+  <%= link_to "Play Trivia", topics_url %><br>
+  <%= link_to "My Created Trivias", "#" %> <br>
   <%= link_to "Leaderboard", "#"%>
 </div>

@@ -27,7 +27,7 @@ class TriviasController < ApplicationController
       render :new
     end
   end
-  
+
   private
 
   def load_topic

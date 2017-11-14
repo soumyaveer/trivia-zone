@@ -1,6 +1,6 @@
 class TriviaZoneController < ApplicationController
   def index
-    @topics = Topics.all
-    @trivias = current_user.trivia_sessions
+    @topics = Topic.all
+    @trivia_sessions = current_user.trivia_sessions
   end
 end
