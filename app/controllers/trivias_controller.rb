@@ -8,9 +8,16 @@ class TriviasController < ApplicationController
 
   def show
     @questions = @trivia.questions
+
   end
 
   def result
+    if @trivia.trivia_sessions.update(user_id: current_user.id)
+      @trivia_session = current_user.trivia_sessions.find_by(trivia_id: @trivia.id)
+    else
+      render :show
+    end
+    # puts @trivia_session.inspect
     # calculate and add results here
   end
 

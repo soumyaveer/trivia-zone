@@ -1,7 +1,7 @@
 <div class="row">
   <div class="col-sm-8 col-offset-2">
 
-    <%= form_for @trivia, url: result_topic_trivia_path(@topic) ,method: :post do |f| %>
+    <%= form_for @trivia, url: result_topic_trivia_path(@topic) ,method: :get do |f| %>
       <h3>
         <%=f.label :topic, @topic.name  %>
       </h3>
