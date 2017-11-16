@@ -38,4 +38,14 @@ class TriviasController < ApplicationController
     load_topic
     @trivia = Trivia.find(params[:id])
   end
+
+  def trivia_params
+    params.require(:trivia).permit(:title,
+                                   :description,
+                                   :topic_id,
+                                   :user_id,
+                                   :questions_attributes => [:id, :description],
+                                   :answers_attributes => [:id, :description, :correct])
+
+  end
 end

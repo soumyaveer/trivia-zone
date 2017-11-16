@@ -1,25 +1,42 @@
 <div class="row">
   <div class="col-sm-8 col-offset-2">
-    <h2>Topic: <%= @topic.name  %></h2>
-    <h3>Trivia: <%= @trivia.title  %></h3>
-    <h3>Description: <%= @trivia.description %></h3>
-    <%= form_for @trivia, url: result_topic_trivia_path(@topic) , method: :post do |f| %>
+
+    <%= form_for @trivia, url: result_topic_trivia_path(@topic) ,method: :post do |f| %>
+      <h3>
+        <%=f.label :topic, @topic.name  %>
+      </h3>
+
+      <h3>
+        <%=f.label :title, "Title: #{@trivia.title}" %>
+      </h3>
+
+      <h3>
+        <%=f.label :description, "Description: #{@trivia.description}" %>
+      </h3>
+
       <div>
-        <% @questions.each do |question| %>
-          <ul>
-            <li>
-              <%= question.description + "?"%>
-              <div>
-                <% question.answers.each do |answer| %>
-                  <div>
-                    <%= f.radio_button :description, answer.description %>
-                    <%= answer.description %>
-                  </div>
-                <% end %>
-              </div>
-            </li>
-          </ul>
-        <% end %>
+        <ol>
+          <%= f.fields_for :questions do |ff| %>
+            <% @questions.each do |question| %>
+              <li>
+                <%= ff.label :description, question.description + "?"%>
+                <ul class="list-unstyled">
+                  <%= ff.fields_for :answers do |fff| %>
+                    <li>
+                      <%= fff.collection_radio_buttons(question.answers, question.answers, :id, :description) do |b| %>
+                        <div class="radio">
+                          <%= b.label do %>
+                            <%= b.radio_button + b.text %>
+                          <% end %>
+                        </div>
+                      <% end %>
+                    </li>
+                  <% end %>
+                </ul>
+              </li>
+            <% end %>
+          <% end %>
+        </ol>
       </div>
 
       <div>
