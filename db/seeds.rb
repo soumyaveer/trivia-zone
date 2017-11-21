@@ -26,68 +26,68 @@ topic3 = Topic.create(name: 'Hunger Games')
 # create Trivias
 trivia1 = Trivia.create(title: 'How well do you know Jon Snow?',
                         description: Faker::Lorem.sentence,
-                        topic_id: topic1.id,
-                        user_id: user1.id)
+                        topic: topic1,
+                        author: user1)
 
 trivia2 = Trivia.create(title: 'Kings and Houses of Westros',
                         description: Faker::Lorem.sentence,
-                        topic_id: topic1.id,
-                        user_id: user2.id)
+                        topic: topic1,
+                        author: user2)
 
 
 trivia3 = Trivia.create(title: 'Roberts Rebellion',
                         description: Faker::Lorem.sentence,
-                        topic_id: topic1.id,
-                        user_id: user3.id)
+                        topic: topic1,
+                        author: user3)
 
 
 trivia4 = Trivia.create(title: 'House Stark',
                         description: Faker::Lorem.sentence,
-                        topic_id: topic1.id,
-                        user_id: user2.id)
+                        topic: topic1,
+                        author: user2)
 
 
 trivia5 = Trivia.create(title: 'Hogwarts School of Wizardary and Witchcraft',
                         description: Faker::Lorem.sentence,
                         topic_id: topic2.id,
-                        user_id: user2.id)
+                        author: user2)
 
 trivia6 = Trivia.create(title: 'Hogwarts Professors',
                         description: Faker::Lorem.sentence,
                         topic_id: topic2.id,
-                        user_id: user1.id)
+                        author: user1)
 
 trivia7 = Trivia.create(title: 'Defence Against the Dark Arts',
                         description: Faker::Lorem.sentence,
                         topic_id: topic2.id,
-                        user_id: user3.id)
+                        author: user3)
 
 trivia8 = Trivia.create(title: 'Transfiguration with Professor Mcgonegal',
                         description: Faker::Lorem.sentence,
                         topic_id: topic2.id,
-                        user_id: user2.id)
+                        author: user2)
 
 trivia9 = Trivia.create(title: 'Catching Fire',
                         description: Faker::Lorem.sentence,
                         topic_id: topic3.id,
-                        user_id: user1.id)
+                        author: user1)
 
 trivia10 = Trivia.create(title: 'Katniss Everdeen & Tributes',
                         description: Faker::Lorem.sentence,
                         topic_id: topic3.id,
-                        user_id: user1.id)
+                         author: user1)
 
 
 trivia11 = Trivia.create(title: 'MockingJay',
                         description: Faker::Lorem.sentence,
                         topic_id: topic3.id,
-                        user_id: user3.id)
+                         author: user3)
 
 
 trivia12 = Trivia.create(title: 'Districts & History of Panem',
                         description: Faker::Lorem.sentence,
                         topic_id: topic3.id,
-                        user_id: user2.id)
+                         author: user2)
 
 # create TriviaSession
 

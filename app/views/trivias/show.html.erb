@@ -1,42 +1,25 @@
 <div class="row">
   <div class="col-sm-8 col-offset-2">
-
-    <%= form_for @trivia, url: result_topic_trivia_path(@topic) ,method: :get do |f| %>
+    <%= form_for @trivia, url: result_topic_trivia_path(@topic), method: :get do |f| %>
       <h3>
-        <%=f.label :topic, @topic.name  %>
+        <%= @topic.name %>
       </h3>
-
       <h3>
-        <%=f.label :title, "Title: #{@trivia.title}" %>
+        <%= "Title: #{@trivia.title}" %>
       </h3>
-
       <h3>
-        <%=f.label :description, "Description: #{@trivia.description}" %>
+        <%= "Description: #{@trivia.description}" %>
       </h3>
-
       <div>
-        <ol>
-          <%= f.fields_for :questions do |ff| %>
-            <% @questions.each do |question| %>
-              <li>
-                <%= ff.label :description, question.description + "?"%>
-                <ul class="list-unstyled">
-                  <%= ff.fields_for :answers do |fff| %>
-                    <li>
-                      <%= fff.collection_radio_buttons(question.answers, question.answers, :id, :description) do |b| %>
-                        <div class="radio">
-                          <%= b.label do %>
-                            <%= b.radio_button + b.text %>
-                          <% end %>
-                        </div>
-                      <% end %>
-                    </li>
-                  <% end %>
-                </ul>
-              </li>
-            <% end %>
+        <%= f.fields_for :questions do |question_fields| %>
+          <%= question_fields.label :description, "Question ##{question_fields.index + 1}: #{question_fields.object.description}" %>
+          <br>
+          <%= question_fields.fields_for :answers do |answer_fields| %>
+            <%= question_fields.radio_button :description, answer_fields.object.description, checked: false %>
+            <%= answer_fields.label :description, answer_fields.object.description %>
+            <br>
           <% end %>
-        </ol>
+        <% end %>
       </div>
 
       <div>

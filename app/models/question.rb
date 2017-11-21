@@ -4,4 +4,5 @@ class Question < ActiveRecord::Base
   accepts_nested_attributes_for :answers
 
   validates :description, presence: true
+  # TODO: validate that there is atleast one correct answer specified
 end

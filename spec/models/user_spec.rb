@@ -54,4 +54,15 @@ describe User do
       expect(user.trivias).to match_array([@trivia1, @trivia2])
     end
   end
+
+  describe "authored trivias" do
+    it "returns trivias authored by the specified user" do
+      user = FactoryGirl.create(:user)
+
+      trivia_1 = FactoryGirl.create(:trivia, author: user)
+      trivia_2 = FactoryGirl.create(:trivia, author: user)
+
+      expect(user.reload.authored_trivias).to match_array([trivia_1, trivia_2])
+    end
+  end
 end

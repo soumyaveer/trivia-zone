@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20171018045409) do
+ActiveRecord::Schema.define(version: 20171121083044) do
 
   create_table "answers", force: :cascade do |t|
     t.text "description"
@@ -18,6 +18,11 @@ ActiveRecord::Schema.define(version: 20171018045409) do
     t.boolean "correct", default: false
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
+  end
+
+  create_table "answers_trivia_sessions", force: :cascade do |t|
+    t.integer "answer_id", null: false
+    t.integer "trivia_session_id", null: false
   end
 
   create_table "questions", force: :cascade do |t|
@@ -37,7 +42,7 @@ ActiveRecord::Schema.define(version: 20171018045409) do
     t.string "title"
     t.text "description"
     t.integer "topic_id"
-    t.integer "user_id"
+    t.integer "author_id"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
   end
@@ -45,9 +50,13 @@ ActiveRecord::Schema.define(version: 20171018045409) do
   create_table "trivia_sessions", force: :cascade do |t|
     t.integer "user_id"
     t.integer "trivia_id"
-    t.integer "score"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
+  end
+
+  create_table "trivia_sessions_answers", force: :cascade do |t|
+    t.integer "answer_id", null: false
+    t.integer "trivia_session_id", null: false
   end
 
   create_table "users", force: :cascade do |t|

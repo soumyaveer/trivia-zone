@@ -11,4 +11,9 @@ Rails.application.routes.draw do
       end
     end
   end
+
+  # trivias/:trivia-id/trivia_sessions/new -> create -> show
+  resources :trivias do
+    resources :trivia_sessions
+  end
 end

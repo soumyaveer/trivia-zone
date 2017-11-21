@@ -8,4 +8,6 @@ class User < ActiveRecord::Base
 
   has_many :trivia_sessions
   has_many :trivias, through: :trivia_sessions
+
+  has_many :authored_trivias, foreign_key: :author_id, class_name: "Trivia"
 end

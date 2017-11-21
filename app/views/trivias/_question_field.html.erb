@@ -1,0 +1,10 @@
+<div class="form-group">
+  <%= question_fields.label :description, "Question ##{question_fields.index + 1}" %><br />
+  <%= question_fields.text_area :description, class: "form-control" %>
+</div>
+
+<div class="form-group">
+  <%= question_fields.fields_for :answers do |answer_fields| %>
+  <%= render "answer_fields", answer_fields: answer_fields %>
+  <% end %>
+</div>
