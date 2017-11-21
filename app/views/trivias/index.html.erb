@@ -3,7 +3,7 @@
     <h2>Trivia Topics:</h2>
     <ul class="list-unstyled">
       <% @trivias.each do |trivia| %>
-      <li><%= link_to trivia.title, topic_trivia_path(@topic, trivia) %></li>
+      <li><%= link_to trivia.title, new_trivia_trivia_session_path(trivia) %></li>
       <% end %>
     </ul>
   </div>

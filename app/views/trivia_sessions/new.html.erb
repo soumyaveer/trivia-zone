@@ -1,8 +1,8 @@
 <div class="row">
   <div class="col-sm-8 col-offset-2">
-    <%= form_for @trivia_session, url: trivia_trivia_sessions(@trivia), method: :post do |f| %>
+    <%= form_for @trivia_session, url: trivia_trivia_sessions_path(@trivia), method: :post do |f| %>
       <h3>
-        <%= @topic.name %>
+        <%= @trivia.topic.name %>
       </h3>
       <h3>
         <%= "Title: #{@trivia.title}" %>
@@ -10,17 +10,17 @@
       <h3>
         <%= "Description: #{@trivia.description}" %>
       </h3>
-      <div>
-        <%= f.fields_for :questions do |question_fields| %>
-          <%= question_fields.label :description, "Question ##{question_fields.index + 1}: #{question_fields.object.description}" %>
-          <br>
-          <%= question_fields.fields_for :answers do |answer_fields| %>
-            <%= question_fields.radio_button :description, answer_fields.object.description, checked: false %>
-            <%= answer_fields.label :description, answer_fields.object.description %>
-            <br>
-          <% end %>
+
+      <ol>
+        <% @trivia.questions.each do |question| %>
+          <li>
+            <%= question.description %>
+            <% question.answers.each do |answer|%>
+              <%= answer.description %>
+            <% end %>
+          </li>
         <% end %>
-      </div>
+      </ol>
 
       <div>
         <%= f.submit "Submit" %>
