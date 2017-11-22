@@ -91,30 +91,18 @@ trivia12 = Trivia.create(title: 'Districts & History of Panem',
 
 # create TriviaSession
 
-TriviaSession.create(user_id: user2.id, trivia_id: trivia1.id, score: 80)
-TriviaSession.create(user_id: user1.id, trivia_id: trivia2.id, score: 50)
-TriviaSession.create(user_id: user1.id, trivia_id: trivia3.id, score: 70)
-TriviaSession.create(user_id: user3.id, trivia_id: trivia4.id, score: 10)
-TriviaSession.create(user_id: user2.id, trivia_id: trivia5.id, score: 90)
-TriviaSession.create(user_id: user1.id, trivia_id: trivia6.id, score: 30)
-TriviaSession.create(user_id: user2.id, trivia_id: trivia7.id, score: 50)
-TriviaSession.create(user_id: user3.id, trivia_id: trivia8.id, score: 100)
-TriviaSession.create(user_id: user3.id, trivia_id: trivia9.id, score: 60)
-TriviaSession.create(user_id: user1.id, trivia_id: trivia10.id, score: 100)
-TriviaSession.create(user_id: user2.id, trivia_id: trivia11.id, score: 90)
-TriviaSession.create(user_id: user1.id, trivia_id: trivia12.id, score: 70)
-
-# create Questions for trivia1
-question1 = Question.create(description: Faker::Lorem.sentence, trivia_id: trivia1.id)
-question2 = Question.create(description: Faker::Lorem.sentence, trivia_id: trivia1.id)
-question3 = Question.create(description: Faker::Lorem.sentence, trivia_id: trivia1.id)
-question4 = Question.create(description: Faker::Lorem.sentence, trivia_id: trivia1.id)
-question5 = Question.create(description: Faker::Lorem.sentence, trivia_id: trivia1.id)
-question6 = Question.create(description: Faker::Lorem.sentence, trivia_id: trivia1.id)
-question7 = Question.create(description: Faker::Lorem.sentence, trivia_id: trivia1.id)
-question8 = Question.create(description: Faker::Lorem.sentence, trivia_id: trivia1.id)
-question9 = Question.create(description: Faker::Lorem.sentence, trivia_id: trivia1.id)
-question10 = Question.create(description: Faker::Lorem.sentence, trivia_id: trivia1.id)
+TriviaSession.create(user_id: user2.id, trivia_id: trivia1.id)
+TriviaSession.create(user_id: user1.id, trivia_id: trivia2.id)
+TriviaSession.create(user_id: user1.id, trivia_id: trivia3.id)
+TriviaSession.create(user_id: user3.id, trivia_id: trivia4.id)
+TriviaSession.create(user_id: user2.id, trivia_id: trivia5.id)
+TriviaSession.create(user_id: user1.id, trivia_id: trivia6.id)
+TriviaSession.create(user_id: user2.id, trivia_id: trivia7.id)
+TriviaSession.create(user_id: user3.id, trivia_id: trivia8.id)
+TriviaSession.create(user_id: user3.id, trivia_id: trivia9.id)
+TriviaSession.create(user_id: user1.id, trivia_id: trivia10.id)
+TriviaSession.create(user_id: user2.id, trivia_id: trivia11.id)
+TriviaSession.create(user_id: user1.id, trivia_id: trivia12.id)
 
 # create Questions for trivia1
 

@@ -14,16 +14,22 @@
       <ol>
         <% @trivia.questions.each do |question| %>
           <li>
-            <%= question.description %>
-            <% question.answers.each do |answer|%>
-              <%= answer.description %>
-            <% end %>
+            <%= question.description %> <br>
+              <% question.answers.each do |answer| %>
+              <div class="radio">
+                <label>
+                  <%= radio_button_tag "trivia_session[question][#{question.id}][answer_id]", answer.id %>
+                  <%= answer.description %> <br>
+                </label>
+              </div>
+              <% end %>
+            <br>
           </li>
         <% end %>
       </ol>
 
       <div>
-        <%= f.submit "Submit" %>
+        <%= f.submit "Submit", class: "btn btn-primary" %>
       </div>
 
     <% end %>

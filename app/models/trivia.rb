@@ -4,6 +4,7 @@ class Trivia < ActiveRecord::Base
   belongs_to :topic
   belongs_to :author, class_name: "User"
   has_many :questions
+  has_many :answers, through: :questions
   accepts_nested_attributes_for :questions, allow_destroy: true
 
   validates :title, presence: true

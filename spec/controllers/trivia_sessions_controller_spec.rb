@@ -20,10 +20,14 @@ describe TriviaSessionsController do
       post :create, params: {
         trivia_id: trivia.id,
         trivia_session: {
-          answer_ids: [
-            answer_1_for_question_1.id,
-            answer_2_for_question_2.id
-          ]
+          question: {
+            question_1.id => {
+              answer_id: answer_1_for_question_1.id
+            },
+            question_2.id => {
+              answer_id: answer_1_for_question_2.id
+            }
+          }
         }
       }
 
