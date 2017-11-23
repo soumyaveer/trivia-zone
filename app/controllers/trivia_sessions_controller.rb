@@ -1,5 +1,5 @@
 class TriviaSessionsController < ApplicationController
-  before_action :load_trivia, only: [:create, :new, :show]
+  before_action :load_trivia, only: [:create, :new, :show, :destroy]
 
   def create
     @trivia_session = @trivia.trivia_sessions.build
@@ -15,11 +15,17 @@ class TriviaSessionsController < ApplicationController
   def new
     @trivia_session = TriviaSession.new
     @topic = @trivia.topic
-
   end
 
   def show
     @trivia_session = @trivia.trivia_sessions.find(params[:id])
+  end
+
+
+  def destroy
+    @trivia_session = @trivia.trivia_sessions.find(params[:id])
+    @trivia_session.destroy
+    redirect_to root_path
   end
 
   private

@@ -5,6 +5,7 @@
     <tr>
       <th>Name</th>
       <th>Score</th>
+      <th>Delete Played Trivia</th>
     </tr>
     <% @trivia_sessions.each do |trivia_session| %>
     <tr>
@@ -12,6 +13,7 @@
           <%= trivia_session.trivia.title %>
         </td>
         <td><%= trivia_session.score %></td>
+        <td><%= link_to "Delete", trivia_trivia_session_path(trivia_session.trivia, trivia_session), method: :delete %></td>
     </tr>
     <% end %>
   </table>
