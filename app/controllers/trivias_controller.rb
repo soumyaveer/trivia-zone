@@ -4,6 +4,8 @@ class TriviasController < ApplicationController
   def index
     @topic = Topic.find_by(id: params[:topic_id])
     @trivias = @topic.trivias
+
+    @authored_trivias = @topic.trivias_authered_by(current_user)
   end
 
   def new
@@ -34,7 +36,6 @@ class TriviasController < ApplicationController
   end
 
   def edit
-
   end
 
   def update
