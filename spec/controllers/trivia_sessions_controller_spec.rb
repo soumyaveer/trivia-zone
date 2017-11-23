@@ -25,7 +25,7 @@ describe TriviaSessionsController do
               answer_id: answer_1_for_question_1.id
             },
             question_2.id => {
-              answer_id: answer_1_for_question_2.id
+              answer_id: answer_2_for_question_2.id
             }
           }
         }
