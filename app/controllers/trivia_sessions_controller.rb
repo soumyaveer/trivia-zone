@@ -1,6 +1,7 @@
 class TriviaSessionsController < ApplicationController
+  before_action :load_trivia, only: [:create, :new, :show]
+
   def create
-    @trivia = Trivia.find(params[:trivia_id])
     @trivia_session = @trivia.trivia_sessions.build
     @trivia_session.user = current_user
     @trivia_session.answers << find_answers(@trivia)
@@ -12,14 +13,13 @@ class TriviaSessionsController < ApplicationController
   end
 
   def new
-    @trivia = Trivia.find(params[:trivia_id])
     @trivia_session = TriviaSession.new
   end
 
   def show
-
+    @trivia_session = @trivia.trivia_sessions.find(params[:id])
   end
-  
+
   private
 
   def create_params
@@ -40,5 +40,9 @@ class TriviaSessionsController < ApplicationController
     end
 
     answers
+  end
+
+  def load_trivia
+    @trivia = Trivia.find(params[:trivia_id])
   end
 end
