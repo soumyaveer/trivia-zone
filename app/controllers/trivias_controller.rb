@@ -1,5 +1,6 @@
 class TriviasController < ApplicationController
   before_action :load_trivia, only: [:edit, :update]
+  before_action :load_topic, only:[:destroy]
 
   def index
     @topic = Topic.find_by(id: params[:topic_id])
@@ -33,6 +34,11 @@ class TriviasController < ApplicationController
     else
       render :new, status: :unprocessable_entity
     end
+  end
+
+  def destroy
+    @trivia.destroy
+    redirect_to topic_trivias_path(@topic)
   end
 
   def edit

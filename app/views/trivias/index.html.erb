@@ -10,8 +10,14 @@
     <h3>My Created Trivias:</h3>
     <ul class="list-unstyled">
       <% @authored_trivias.each do |authored_trivia| %>
-        <li><%= link_to authored_trivia.title, new_trivia_trivia_session_path(authored_trivia) %>
-          <%= link_to "Edit Trivia", edit_topic_trivia_path(authored_trivia.topic, authored_trivia)%>
+        <li>
+          <span>
+            <%= link_to authored_trivia.title, new_trivia_trivia_session_path(authored_trivia) %>
+          </span>
+          <span class="pull-right">
+            <%= link_to "Edit Trivia", edit_topic_trivia_path(authored_trivia.topic, authored_trivia)%>
+            <%= link_to "Delete Trivia", topic_trivia_path(authored_trivia.topic, authored_trivia), method: :delete %>
+          </span>
         </li>
       <% end %>
     </ul>
