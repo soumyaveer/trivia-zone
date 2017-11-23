@@ -1,22 +1,9 @@
 class TriviasController < ApplicationController
-  before_action :load_trivia, only: [:show, :result]
+  before_action :load_trivia, only: [:edit, :update]
 
   def index
     @topic = Topic.find_by(id: params[:topic_id])
     @trivias = @topic.trivias
-  end
-
-  def show
-    @questions = @trivia.questions
-  end
-
-  def result
-    # if @trivia.trivia_sessions.update(user_id: current_user.id)
-    #   @trivia_session = current_user.trivia_sessions.find_by(trivia_id: @trivia.id)
-    # else
-    #   render :show
-    # end
-    # calculate and add results here
   end
 
   def new
@@ -46,13 +33,19 @@ class TriviasController < ApplicationController
     end
   end
 
+  def edit
+
+  end
+
+  def update
+    if @trivia.update_attributes(trivia_params)
+      redirect_to new_trivia_trivia_session_path(@trivia)
+    else
+      render :edit
+    end
+  end
+
   private
-  #
-  # def correct_answers_count
-  #   correct_answer = 0
-  #   correct_answer += 1 if answers.correct
-  #   correct_answer
-  # end
 
   def load_topic
     @topic = Topic.find_by(id: params[:topic_id])

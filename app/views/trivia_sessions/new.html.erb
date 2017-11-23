@@ -33,5 +33,9 @@
       </div>
 
     <% end %>
+
+    <% if current_user.id == @trivia.author_id %>
+      <%= link_to "Edit Trivia", edit_topic_trivia_path(@topic, @trivia), class: "btn btn-primary" %>
+    <% end %>
   </div>
 </div>

@@ -6,7 +6,7 @@ class TriviaSessionsController < ApplicationController
     @trivia_session.user = current_user
     @trivia_session.answers << find_answers(@trivia)
     if @trivia_session.save!
-      redirect_to trivia_trivia_session(@trivia, @trivia_session)
+      redirect_to trivia_trivia_session_path(@trivia, @trivia_session)
     else
       render :new
     end
@@ -14,6 +14,8 @@ class TriviaSessionsController < ApplicationController
 
   def new
     @trivia_session = TriviaSession.new
+    @topic = @trivia.topic
+
   end
 
   def show

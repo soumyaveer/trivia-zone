@@ -9,8 +9,4 @@ class Trivia < ActiveRecord::Base
 
   validates :title, presence: true
   validates :title, uniqueness: true
-
-  def score
-
-  end
 end
