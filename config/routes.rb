@@ -16,4 +16,6 @@ Rails.application.routes.draw do
   resources :trivias do
     resources :trivia_sessions
   end
+
+  resources :leaderboards, only: [:index]
 end
