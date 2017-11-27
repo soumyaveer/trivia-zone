@@ -13,6 +13,6 @@ class Topic < ActiveRecord::Base
         all_players_for_topic << trivia_session.user
       end
     end
-    all_players_for_topic.uniq.sort {|player_a, player_b| player_b.topic_score(self) <=> player_a.topic_score(self)}
+    all_players_for_topic.uniq.sort {|player_a, player_b| player_b.topic_score(self) <=> player_a.topic_score(self)}.first(3)
   end
 end
