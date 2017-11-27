@@ -11,6 +11,8 @@
       <% else %>
         <p>This topic has no trivia. Be the first one to add a trivia!</p>
       <% end %>
+
+
       <h3>My Created Trivias:</h3>
       <% if @authored_trivias.present? %>
 
@@ -34,6 +36,11 @@
   </div>
 
   <div class="col-sm-8 col-offset-2">
-    <%= link_to "Add Trivia", new_topic_trivia_path(@topic), class: "btn btn-primary" %>
+    <div>
+      <%= link_to "Add Trivia", new_topic_trivia_path(@topic), class: "btn btn-primary" %>
+    </div>
+    <div class="pull-right">
+      <%= link_to "Back", topics_path %>
+    </div>
   </div>
 </div>
