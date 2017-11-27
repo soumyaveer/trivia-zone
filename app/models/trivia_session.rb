@@ -5,6 +5,8 @@ class TriviaSession < ActiveRecord::Base
 
   accepts_nested_attributes_for :answers
 
+  scope :order_by_created_at, (-> { order(created_at: :desc) })
+
   def score
     (self.answers.correct.size / self.answers.size.to_f) * 100.00
   end
