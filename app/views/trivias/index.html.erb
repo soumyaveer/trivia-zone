@@ -2,12 +2,15 @@
   <div class="col-sm-8 col-offset-2">
     <div>
       <h2>Play Trivia:</h2>
-      <ul class="list-unstyled">
-        <% @trivias.each do |trivia| %>
-          <li><%= link_to trivia.title, new_trivia_trivia_session_path(trivia) %></li>
-        <% end %>
-      </ul>
-
+      <% if @trivias.present? %>
+        <ul class="list-unstyled">
+          <% @trivias.each do |trivia| %>
+            <li><%= link_to trivia.title, new_trivia_trivia_session_path(trivia) %></li>
+          <% end %>
+        </ul>
+      <% else %>
+        <p>This topic has no trivia. Be the first one to add a trivia!</p>
+      <% end %>
       <h3>My Created Trivias:</h3>
       <% if @authored_trivias.present? %>
 
@@ -25,7 +28,7 @@
           <% end %>
         </ul>
       <% else %>
-          <p>No Trivias to display. Add some new Trivias for this topic!</p>
+        <p>No Trivias to display. Add some new Trivias for this topic!</p>
       <% end %>
     </div>
   </div>
