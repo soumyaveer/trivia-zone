@@ -1,5 +1,5 @@
 <div class="row">
-  <div class="col-sm-12">
+  <div class="col-md-8 col-md-offset-2">
     <h4>
       <%= link_to "Home", root_path %>
       <%= link_to "Leaderboard", topics_path %>
@@ -9,8 +9,14 @@
 </div>
 
 <div class="row">
-  <div class="col-sm-8 col-offset-2">
+  <div class="col-md-8 col-md-offset-2">
     <h2>Trivia Topics:</h2>
     <%= render "topics" %>
+  </div>
+</div>
+
+<div class="row">
+  <div class="col-md-8 col-md-offset-2 pull-right">
+    <%= link_to "Back", root_path %>
   </div>
 </div>

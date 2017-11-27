@@ -1,0 +1,20 @@
+<div class="row">
+  <div class="col-md-6 col-md-offset-3">
+    <h2>Select or create a new Topic</h2>
+    <h4>Select a Trivia Topic:</h4>
+    <%= render "topics" %>
+    <h5>OR,</h5>
+
+    <%= form_for @topic, url: topics_path, method: :post do |f| %>
+      <div class="form-group">
+        <%= f.label :name, "Create a new topic:" %> <br>
+        <%= f.text_field :name , class: "form-control"%>
+      </div>
+      <br>
+
+      <div>
+        <%= f.submit "Create Topic", class: "btn btn-primary"%>
+      </div>
+    <% end %>
+  </div>
+</div>
