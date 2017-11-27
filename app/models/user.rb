@@ -10,4 +10,12 @@ class User < ActiveRecord::Base
   has_many :trivias, through: :trivia_sessions
 
   has_many :authored_trivias, foreign_key: :author_id, class_name: "Trivia"
+
+  def topic_score(topic)
+    total_score = 0
+    self.trivia_sessions.each do |trivia_session|
+      total_score += trivia_session.score if trivia_session.trivia.topic == topic
+    end
+    total_score
+  end
 end
