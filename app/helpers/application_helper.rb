@@ -1,4 +1,8 @@
 module ApplicationHelper
+  def form_group_error_class_for(record, attribute_name)
+    record.errors[attribute_name].present? ? 'has-error' : ''
+  end
+
   def nav_status(nav_item)
     nav_item == @current_nav_item ? 'active' : 'inactive'
   end
