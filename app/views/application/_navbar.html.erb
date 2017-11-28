@@ -1,0 +1,29 @@
+<nav class="navbar navbar-default navbar-inverse navbar-fixed-top">
+  <div class="container-fluid">
+    <div class="navbar-header">
+      <%= link_to "Trivia Zone", root_url, class:"navbar-brand"%>
+    </div>
+
+    <div class="collapse navbar-collapse">
+      <ul class="nav navbar-nav">
+        <li class="<%= nav_status(:home) %>">
+          <%= link_to "Home", nav_item_url(:home), title: "Home" %>
+        </li>
+
+        <li class="<%= nav_status(:play_trivia) %>">
+          <%= link_to "Play Trivia", nav_item_url(:play_trivia), title: "Play Trivia" %>
+        </li>
+
+        <li class="<%= nav_status(:leaderboard) %>">
+          <%= link_to "Leaderboard", nav_item_url(:leaderboard), title: "Leaderboard" %>
+        </li>
+      </ul>
+
+        <ul class="nav navbar-nav navbar-right">
+          <li>
+          <%= button_to "Logout", destroy_user_session_path, method: :delete, class: "btn btn-link btn-logout" %>
+          </li>
+        </ul>
+      </div>
+  </div>
+</nav>

@@ -1,5 +1,5 @@
 <div class="row">
-  <div class="col-md-6 col-md-offset-3">
+  <div class="col-sm-10 col-sm-offset-1">
     <h2>Select or create a new Topic</h2>
     <h4>Select a Trivia Topic:</h4>
     <ul class="list-unstyled">
@@ -8,16 +8,25 @@
       <% end %>
     </ul>
     <h5>OR,</h5>
-
+    </div>
+  <div class="col-sm-10 col-sm-offset-1">
     <%= form_for @topic, url: topics_path, method: :post do |f| %>
-      <div class="form-group">
-        <%= f.label :name, "Create a new topic:" %> <br>
+      <% if @topic.errors.present? %>
+        <ul class="alert alert-danger list-unstyled">
+          <% @topic.errors.full_messages.each do |error_message| %>
+            <li><%= error_message %></li>
+          <% end %>
+        </ul>
+      <%end%>
+
+      <div class="form-group <%=form_group_error_class_for(@topic,:name) %>">
+        <%= f.label :name, "Create a new topic:", class: "control-label" %> <br>
         <%= f.text_field :name , class: "form-control"%>
       </div>
       <br>
 
       <div>
-        <%= f.submit "Create Topic", class: "btn btn-primary"%>
+        <%= f.submit "Create Topic", class: "btn btn-primary btn-sm"%>
       </div>
     <% end %>
 
