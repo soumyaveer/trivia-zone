@@ -35,8 +35,8 @@
     <% end %>
 
     <% if current_user.id == @trivia.author_id %>
-      <%= link_to "Edit Trivia", edit_topic_trivia_path(@topic, @trivia), class: "btn btn-primary" %>
-      <%= link_to "Delete Trivia", topic_trivia_path(@topic, @trivia), method: :delete, class: "btn btn-primary" %>
+      <%= link_to "Edit Trivia", edit_topic_trivia_path(@topic, @trivia), class: "btn btn-default btn-sm" %>
+      <%= link_to "Delete Trivia", topic_trivia_path(@topic, @trivia), method: :delete, class: "btn btn-default btn-sm" %>
   <% end %>
   </div>
 </div>
