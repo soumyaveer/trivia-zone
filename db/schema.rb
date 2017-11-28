@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20171121083044) do
+ActiveRecord::Schema.define(version: 20171128064312) do
 
   create_table "answers", force: :cascade do |t|
     t.text "description"
@@ -54,11 +54,6 @@ ActiveRecord::Schema.define(version: 20171121083044) do
     t.datetime "updated_at", null: false
   end
 
-  create_table "trivia_sessions_answers", force: :cascade do |t|
-    t.integer "answer_id", null: false
-    t.integer "trivia_session_id", null: false
-  end
-
   create_table "users", force: :cascade do |t|
     t.string "name"
     t.datetime "created_at", null: false
@@ -73,8 +68,12 @@ ActiveRecord::Schema.define(version: 20171121083044) do
     t.datetime "last_sign_in_at"
     t.string "current_sign_in_ip"
     t.string "last_sign_in_ip"
+    t.string "provider"
+    t.string "uid"
     t.index ["email"], name: "index_users_on_email", unique: true
+    t.index ["provider"], name: "index_users_on_provider"
     t.index ["reset_password_token"], name: "index_users_on_reset_password_token", unique: true
+    t.index ["uid"], name: "index_users_on_uid"
   end
 
 end

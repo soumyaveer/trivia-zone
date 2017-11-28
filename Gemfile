@@ -29,10 +29,10 @@ gem 'turbolinks', '~> 5'
 gem 'jbuilder', '~> 2.5'
 gem 'devise'
 
-gem 'omniauth'
-gem 'omniauth-facebook'
+gem "omniauth"
+gem "omniauth-facebook"
 
-gem 'dotenv-rails'
+gem 'dotenv-rails', groups: [:development, :test]
 
 # Use Redis adapter to run Action Cable in production
 # gem 'redis', '~> 3.0'
