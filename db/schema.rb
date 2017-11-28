@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20171018045409) do
+ActiveRecord::Schema.define(version: 20171128064312) do
 
   create_table "answers", force: :cascade do |t|
     t.text "description"
@@ -18,6 +18,11 @@ ActiveRecord::Schema.define(version: 20171018045409) do
     t.boolean "correct", default: false
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
+  end
+
+  create_table "answers_trivia_sessions", force: :cascade do |t|
+    t.integer "answer_id", null: false
+    t.integer "trivia_session_id", null: false
   end
 
   create_table "questions", force: :cascade do |t|
@@ -37,7 +42,7 @@ ActiveRecord::Schema.define(version: 20171018045409) do
     t.string "title"
     t.text "description"
     t.integer "topic_id"
-    t.integer "user_id"
+    t.integer "author_id"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
   end
@@ -45,7 +50,6 @@ ActiveRecord::Schema.define(version: 20171018045409) do
   create_table "trivia_sessions", force: :cascade do |t|
     t.integer "user_id"
     t.integer "trivia_id"
-    t.integer "score"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
   end
@@ -64,8 +68,12 @@ ActiveRecord::Schema.define(version: 20171018045409) do
     t.datetime "last_sign_in_at"
     t.string "current_sign_in_ip"
     t.string "last_sign_in_ip"
+    t.string "provider"
+    t.string "uid"
     t.index ["email"], name: "index_users_on_email", unique: true
+    t.index ["provider"], name: "index_users_on_provider"
     t.index ["reset_password_token"], name: "index_users_on_reset_password_token", unique: true
+    t.index ["uid"], name: "index_users_on_uid"
   end
 
 end

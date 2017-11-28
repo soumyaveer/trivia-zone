@@ -1,0 +1,5 @@
+<ul class="list-unstyled">
+  <% @topics.each do |topic| %>
+    <li><%= link_to topic.name, topic_trivias_path(topic) %></li>
+  <% end %>
+</ul>

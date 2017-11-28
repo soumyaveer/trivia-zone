@@ -1,12 +1,13 @@
 describe Trivia do
   describe 'validations' do
     let(:topic) { Topic.create(name: Faker::Lorem.word)}
-    let (:user) {User.create(name: 'sam', email: 'sam@test.com', password: 'samtest@123')}
+    let (:author) { User.create(name: 'sam', email: 'sam@test.com', password: 'samtest@123') }
+
     let(:trivia) do
       Trivia.create(title: "House Stark",
                     description: "This Trivia is related to the history and members of House Stark",
-                    topic_id: topic.id,
-                    user_id: user.id)
+                    topic: topic,
+                    author: author)
     end
 
     it 'should fail validation if title is not present' do
@@ -20,7 +21,7 @@ describe Trivia do
       new_trivia = Trivia.create(title: trivia.title,
                                  description: "Another description",
                                  topic_id: topic.id,
-                                 user_id: user.id)
+                                 author: author)
 
       expect(new_trivia.valid?).to eql(false)
       expect(new_trivia.errors[:title]).to be_present
@@ -33,7 +34,7 @@ describe Trivia do
   end
 
   describe 'relationship' do
-    let(:user) do
+    let(:author) do
       User.create(name: Faker::Name.name, email: Faker::Internet.email, password: "testpassword123")
     end
 
@@ -45,7 +46,7 @@ describe Trivia do
       Trivia.create(title: Faker::Lorem.sentence,
                     description: Faker::Lorem.paragraph,
                     topic: topic,
-                    user: user)
+                    author: author)
     end
 
     before do
@@ -62,8 +63,8 @@ describe Trivia do
       expect(trivia.topic).to eql(topic)
     end
 
-    it 'is created by a user' do
-      expect(trivia.user).to eql(user)
+    it 'is created by an author' do
+      expect(trivia.author).to eql(author)
     end
   end
 end
