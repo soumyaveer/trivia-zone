@@ -1,5 +1,5 @@
 class TriviasController < ApplicationController
-  before_action :load_trivia, only: [:edit, :update]
+  before_action :load_trivia, only: [:edit, :update, :destroy]
   before_action :load_topic, only:[:destroy]
 
   def index
