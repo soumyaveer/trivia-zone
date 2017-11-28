@@ -1,8 +1,11 @@
 <div class="row">
-  <div class="col-sm-8 col-offset-2">
+  <div class="col-sm-10 col-offset-1">
     <h3>Your Score for <%= @trivia.title %> is <%= @trivia_session.score %></h3>
-
-    <%= link_to "Play Again", new_trivia_trivia_session_path(@trivia) %>
-    <%= link_to "Back", "/" %>
+      <div>
+        <%= link_to "Play Again", new_trivia_trivia_session_path(@trivia) %>
+      </div>
+    <div class="pull-right">
+      <%= link_to "Back", "/" %>
+    </div>
   </div>
 </div>
