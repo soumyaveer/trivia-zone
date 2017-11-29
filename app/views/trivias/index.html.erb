@@ -1,11 +1,11 @@
 <div class="row">
   <div class="col-sm-10 col-offset-sm-1">
-    <div>
-      <h2>Play Trivia:</h2>
+    <div class="">
+      <h3>Play Trivia:</h3>
       <% if @trivias.present? %>
-        <ul class="list-unstyled">
+        <ul class="list-unstyled trivia-header">
           <% @trivias.each do |trivia| %>
-            <li><%= link_to trivia.title, new_trivia_trivia_session_path(trivia) %></li>
+            <li class="trivia-display"><%= link_to trivia.title, new_trivia_trivia_session_path(trivia) %></li>
           <% end %>
         </ul>
       <% else %>
@@ -13,19 +13,21 @@
       <% end %>
 
 
-      <h3>My Created Trivias:</h3>
+      <h4>My Created Trivias:</h4>
       <% if @authored_trivias.present? %>
 
-        <ul class="list-unstyled">
+        <ul class="list-unstyled trivia-header">
           <% @authored_trivias.each do |authored_trivia| %>
-            <li>
-              <span>
+            <li class="trivia-display">
                 <%= link_to authored_trivia.title, new_trivia_trivia_session_path(authored_trivia) %>
-              </span>
-              <span class="pull-right">
-                <%= link_to "Edit Trivia", edit_topic_trivia_path(authored_trivia.topic, authored_trivia)%>
-                <%= link_to "Delete Trivia", topic_trivia_path(authored_trivia.topic, authored_trivia), method: :delete%>
-              </span>
+              <div class="pull-right">
+                <span class="trivia-link">
+                  <%= link_to "Edit Trivia", edit_topic_trivia_path(authored_trivia.topic, authored_trivia)%>
+                </span>
+                <span class="trivia-link">
+                  <%= link_to "Delete Trivia", topic_trivia_path(authored_trivia.topic, authored_trivia), method: :delete%>
+                </span>
+              </div>
             </li>
           <% end %>
         </ul>
