@@ -29,7 +29,7 @@ class TriviasController < ApplicationController
 
     @trivia.author = current_user
 
-    if @trivia.save!
+    if @trivia.save
       redirect_to topic_trivias_path(@topic)
     else
       render :new, status: :unprocessable_entity

@@ -17,3 +17,9 @@
     margin-bottom: $line-height-computed * 0.5;
   }
 }
+
+.new-trivia-form{
+  .question-field {
+    margin-top: $line-height-computed * 3 ;
+  }
+}
