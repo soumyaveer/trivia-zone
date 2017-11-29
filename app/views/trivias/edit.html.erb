@@ -31,6 +31,8 @@
         <div>
           <%= f.submit "Submit", class: "btn btn-primary btn-sm" %>
         </div>
+
+        <%= link_to "Back", topic_trivias_path(@trivia.topic), class: "pull-right" %>
       <% end %>
     </div>
   </div>
