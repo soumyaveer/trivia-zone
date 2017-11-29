@@ -1,6 +1,6 @@
 <div class="row">
   <div class="col-sm-10 col-offset-sm-1">
-    <div class="">
+    <div>
       <h3>Play Trivia:</h3>
       <% if @trivias.present? %>
         <ul class="list-unstyled trivia-header">
@@ -41,8 +41,6 @@
     <div>
       <%= link_to "Add Trivia", new_topic_trivia_path(@topic), class: "btn btn-primary" %>
     </div>
-    <div class="pull-right">
-      <%= link_to "Back", topics_path %>
-    </div>
+      <%= link_to "Back", topics_path, class: "pull-right" %>
   </div>
 </div>
