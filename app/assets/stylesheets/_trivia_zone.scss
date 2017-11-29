@@ -10,3 +10,10 @@
 .btn-primary {
   margin-top: $line-height-computed * 0.5;
 }
+
+.trivia-zone-topics {
+  .form-control {
+    width: $grid-gutter-width * 6;
+    margin-bottom: $line-height-computed * 0.5;
+  }
+}
