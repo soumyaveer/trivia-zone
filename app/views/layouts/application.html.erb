@@ -11,7 +11,7 @@
   <body>
     <% if user_signed_in? %>
       <%= render "navbar" %>
-      <%= render "application/logged_in_user" %>
+      <%= render "logged_in_user" %>
     <% end %>
     <div class="container">
       <%= yield %>

@@ -11,7 +11,7 @@
               </tr>
               <% topic.players.each do |player| %>
                 <tr>
-                  <td><%= player.name %></td>
+                  <td><%= player.name.capitalize %></td>
                   <td><%= player.topic_score(topic) %></td>
                 </tr>
               <% end %>
