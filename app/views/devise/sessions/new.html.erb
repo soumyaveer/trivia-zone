@@ -7,7 +7,13 @@
         <h3>Log in</h3>
         <br>
         <%= form_for(resource, as: resource_name, url: session_path(resource_name)) do |f| %>
-          <%= devise_error_messages! %>
+          <% if resource.errors.present? %>
+            <ul class="alert alert-danger list-unstyled">
+              <% resource.errors.full_messages.each do |error_message| %>
+                <li><%= error_message %></li>
+              <% end %>
+            </ul>
+          <%end%>
 
           <div class="field form-group">
             <%= f.label :email, class: "control-label" %><br />
@@ -27,7 +33,7 @@
           <% end -%>
 
           <div class="actions">
-            <%= f.submit "Log in", class: "btn btn-default" %>
+            <%= f.submit "Log in", class: "btn btn-primary" %>
           </div>
         <% end %>
         <h5>
