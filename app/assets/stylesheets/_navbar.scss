@@ -1,0 +1,11 @@
+.navbar-nav {
+  li {
+    a {
+      color: $link-color;
+
+      &:active {
+        color: $white;
+      }
+    }
+  }
+}
