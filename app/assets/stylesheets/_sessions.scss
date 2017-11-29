@@ -1,0 +1,11 @@
+.user-form-container {
+  margin-top: 45px;
+
+  .form-border,
+  .new-user {
+    background: $white;
+    border: 1px solid $gray-lighter;
+    border-radius: 3px;
+    padding: 30px;
+  }
+}
