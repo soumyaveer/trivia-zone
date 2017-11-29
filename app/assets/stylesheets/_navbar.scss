@@ -9,3 +9,10 @@
     }
   }
 }
+
+.btn-logout {
+    font-size: $line-height-computed * 0.7;
+    line-height: $line-height-computed;
+    margin-right: $line-height-computed / 2;
+    padding: ($line-height-computed / 2) 0;
+  }
