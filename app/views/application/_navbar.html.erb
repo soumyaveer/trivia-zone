@@ -21,7 +21,6 @@
         <li class="navbar-search form-inline">
           <div class="form-group">
             <%= form_tag(root_path, method: :get) do %>
-              <%= label_tag :search, "Search:", class: "control-label" %>
               <%= text_field_tag :search, params[:search], placeholder: 'Search Trivia', class: "form-control navbar-text-field" %>
               <%= submit_tag "Search", class: "btn btn-default btn-sm" %>
             <% end %>

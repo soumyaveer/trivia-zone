@@ -24,10 +24,6 @@
         <% end %>
       </ol>
       <%= f.submit "Submit", class: "btn btn-primary btn-sm" %>
-      <% if current_user.id == @trivia.author_id %>
-        <%= link_to "Edit", edit_topic_trivia_path(@topic, @trivia), class: "btn btn-primary btn-sm" %>
-        <%= link_to "Delete", topic_trivia_path(@topic, @trivia), method: :delete, class: "btn btn-primary btn-sm" %>
-      <% end %>
     <% end %>
     <%= link_to "Back", topic_trivias_path(@trivia.topic), class: "pull-right" %>
   </div>
