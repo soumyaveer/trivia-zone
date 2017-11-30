@@ -1,0 +1,16 @@
+.user-form-container {
+  margin-top: 45px;
+
+  .form-border,
+  .new-user {
+    background: $white;
+    border: 1px solid $gray-lighter;
+    border-radius: 3px;
+    padding: 15px;
+    margin-top: $line-height-computed * 0.5;
+  }
+}
+
+.logged-in-user {
+  color: darkseagreen;
+}

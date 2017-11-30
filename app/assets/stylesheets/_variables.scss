@@ -1,1 +1,8 @@
 $floral-white-base: #fffaf0;
+$white: #ffffff;
+$gray-base: #000;
+
+
+$gray-lighter: lighten($gray-base, 82%);
+
+$navbar-default-link-active-bg: $white;

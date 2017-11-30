@@ -9,4 +9,13 @@ class Trivia < ActiveRecord::Base
 
   validates :title, presence: true
   validates :title, uniqueness: true
+
+  def self.search(string)
+    where('title LIKE ? OR description LIKE ?', "%#{string}%", "%#{string}%")
+  end
+
+  def max_score_of_user(user)
+    trivia_sessions = self.trivia_sessions.where(user_id: user.id)
+    trivia_sessions.map(&:score).max || 0
+  end
 end

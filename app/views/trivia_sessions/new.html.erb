@@ -1,15 +1,11 @@
 <div class="row">
   <div class="col-sm-10 col-offset-1">
     <%= form_for @trivia_session, url: trivia_trivia_sessions_path(@trivia), method: :post do |f| %>
-      <h3>
-        <%= @trivia.topic.name %>
-      </h3>
-      <h4>
-        <%= "Title: #{@trivia.title}" %>
-      </h4>
-      <h4>
-        <%= "Description: #{@trivia.description}" %>
-      </h4>
+      <h3><%= @trivia.topic.name %></h3>
+
+      <h4><%= "Title: #{@trivia.title}" %></h4>
+
+      <h4><%= "Description: #{@trivia.description}" %></h4>
 
       <ol>
         <% @trivia.questions.each do |question| %>
@@ -27,16 +23,8 @@
           </li>
         <% end %>
       </ol>
-
-      <div>
-        <%= f.submit "Submit", class: "btn btn-primary btn-sm" %>
-        <% if current_user.id == @trivia.author_id %>
-          <%= link_to "Edit Trivia", edit_topic_trivia_path(@topic, @trivia), class: "btn btn-primary btn-sm" %>
-          <%= link_to "Delete Trivia", topic_trivia_path(@topic, @trivia), method: :delete, class: "btn btn-primary btn-sm" %>
-        <% end %>
-      </div>
+      <%= f.submit "Submit", class: "btn btn-primary btn-sm" %>
     <% end %>
-    <br />
-
+    <%= link_to "Back", topic_trivias_path(@trivia.topic), class: "pull-right" %>
   </div>
 </div>

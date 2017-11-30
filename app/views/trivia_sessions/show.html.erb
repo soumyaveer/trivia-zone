@@ -3,9 +3,7 @@
     <h3>Your Score for <%= @trivia.title %> is <%= @trivia_session.score %></h3>
       <div>
         <%= link_to "Play Again", new_trivia_trivia_session_path(@trivia) %>
+        <%= link_to "Back", "/", class: "pull-right" %>
       </div>
-    <div class="pull-right">
-      <%= link_to "Back", "/" %>
-    </div>
   </div>
 </div>

@@ -4,4 +4,5 @@ class Answer < ActiveRecord::Base
   validates :description, presence: true
 
   scope :correct, -> { where(correct: true) }
+  scope :incorrect, -> { where(correct: false) }
 end

@@ -2,6 +2,10 @@
 @import "variables";
 @import "bootstrap/variables";
 @import "bootstrap";
+@import "sessions";
+@import "navbar";
+@import "trivia_zone";
+@import "leaderboard";
 
 body {
   background-color: #F1F9F8;

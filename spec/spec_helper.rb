@@ -94,3 +94,35 @@ RSpec.configure do |config|
   Kernel.srand config.seed
 =end
 end
+
+# Methods to setup scenarios
+
+def create_trivia(number_of_questions, topic)
+  trivia = FactoryGirl.create(:trivia, topic: topic)
+
+  number_of_questions.times do
+    question = FactoryGirl.create(:question, trivia: trivia)
+    FactoryGirl.create(:answer, question: question, correct: false)
+    FactoryGirl.create(:answer, question: question, correct: true)
+  end
+
+  trivia
+end
+
+def create_trivia_session_with(number_of_correct_answers, player, trivia)
+  trivia_session = FactoryGirl.create(:trivia_session, trivia: trivia, user: player)
+
+  trivia.questions.each_with_index do |question, index|
+    build_correct_answer = index < number_of_correct_answers
+
+    answer = if build_correct_answer
+               question.answers.correct.first
+             else
+               question.answers.incorrect.first
+             end
+
+    trivia_session.answers << answer
+  end
+
+  trivia_session
+end

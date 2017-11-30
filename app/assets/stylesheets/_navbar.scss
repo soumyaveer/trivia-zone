@@ -1,0 +1,33 @@
+.navbar-nav {
+  li {
+    a {
+      color: $link-color;
+
+      &:active {
+        color: $white;
+      }
+    }
+  }
+}
+
+.btn-logout {
+    font-size: $line-height-computed * 0.7;
+    line-height: $line-height-computed;
+    margin-right: $line-height-computed / 2;
+    padding: ($line-height-computed / 2) 0;
+}
+
+.navbar-search {
+  color: #9d9d9d;
+  margin-left: $grid-gutter-width * 0.5;
+  margin-top: $line-height-computed * 0.5;
+
+  .btn-default {
+    background: #9d9d9d;
+    margin-left: $grid-gutter-width * 0.5;
+  }
+
+  .navbar-text-field {
+    margin-left: $grid-gutter-width * 0.5;
+  }
+}

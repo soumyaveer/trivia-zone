@@ -1,17 +1,17 @@
 <div class="row">
-  <div class="col-sm-8 col-offset-2">
-    <div>
+  <div class="col-sm-10 col-offset-1">
+    <div class="leaderboard">
       <% @topics.each do |topic| %>
         <% if topic.players.present? %>
           <h3><%= topic.name%></h3>
-            <table class="table table-striped table-bordered">
-              <tr>
+            <table class="table table-bordered">
+              <tr id="table-header">
                 <th>Name</th>
                 <th>Score</th>
               </tr>
               <% topic.players.each do |player| %>
                 <tr>
-                  <td><%= player.name %></td>
+                  <td><%= player.name.capitalize %></td>
                   <td><%= player.topic_score(topic) %></td>
                 </tr>
               <% end %>

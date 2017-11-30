@@ -65,4 +65,23 @@ describe User do
       expect(user.reload.authored_trivias).to match_array([trivia_1, trivia_2])
     end
   end
+
+  describe "topic_score" do
+    it "returns the sum of max scores of all trivias played in this topic" do
+      topic_1 = FactoryGirl.create(:topic)
+      topic_2 = FactoryGirl.create(:topic)
+      trivia_1 = create_trivia(6, topic_1)
+      trivia_2 = create_trivia(10, topic_1)
+      trivia_3 = create_trivia(10, topic_2)
+
+      player = FactoryGirl.create(:user)
+      create_trivia_session_with(3, player, trivia_1) # Score 50
+      create_trivia_session_with(4, player, trivia_1) # Score 66
+      create_trivia_session_with(8, player, trivia_2) # Score 80
+      create_trivia_session_with(10, player, trivia_3) # Score 100
+
+      expect(player.topic_score(topic_1).round(2)).to eql(146.67)
+      expect(player.topic_score(topic_2)).to eql(100.0)
+    end
+  end
 end

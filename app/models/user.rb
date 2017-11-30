@@ -8,20 +8,19 @@ class User < ActiveRecord::Base
   validates :name, :password, presence: true
 
   has_many :trivia_sessions
-  has_many :trivias, through: :trivia_sessions
+  has_many :trivias, -> { distinct }, through: :trivia_sessions
 
   has_many :authored_trivias, foreign_key: :author_id, class_name: "Trivia"
 
   def topic_score(topic)
-    total_score = 0
-    self.trivia_sessions.each do |trivia_session|
-      total_score += trivia_session.score if trivia_session.trivia.topic == topic
+    trivias_in_topic = self.trivias.select { |trivia| trivia.topic == topic }
+
+    trivias_in_topic.sum do |trivia|
+      trivia.max_score_of_user(self)
     end
-    total_score
   end
 
   def self.from_omniauth(auth)
-    puts auth.info
     where(provider: auth.provider, uid: auth.uid).first_or_create do |user|
       user.name = auth.info.name
       user.password = Devise.friendly_token[0,20]

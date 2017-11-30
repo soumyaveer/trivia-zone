@@ -17,9 +17,21 @@
         <li class="<%= nav_status(:leaderboard) %>">
           <%= link_to "Leaderboard", nav_item_url(:leaderboard), title: "Leaderboard" %>
         </li>
+
+        <li class="navbar-search form-inline">
+          <div class="form-group">
+            <%= form_tag(root_path, method: :get) do %>
+              <%= text_field_tag :search, params[:search], placeholder: 'Search Trivia', class: "form-control navbar-text-field" %>
+              <%= submit_tag "Search", class: "btn btn-default btn-sm" %>
+            <% end %>
+          </div>
+        </li>
+      </ul>
+
       </ul>
 
         <ul class="nav navbar-nav navbar-right">
+
           <li>
           <%= button_to "Logout", destroy_user_session_path, method: :delete, class: "btn btn-link btn-logout" %>
           </li>
