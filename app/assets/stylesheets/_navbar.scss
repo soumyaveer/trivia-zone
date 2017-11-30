@@ -19,10 +19,15 @@
 
 .navbar-search {
   color: #9d9d9d;
-  margin-left: $grid-gutter-width;
+  margin-left: $grid-gutter-width * 0.5;
   margin-top: $line-height-computed * 0.5;
 
   .btn-default {
     background: #9d9d9d;
+    margin-left: $grid-gutter-width * 0.5;
+  }
+
+  .navbar-text-field {
+    margin-left: $grid-gutter-width * 0.5;
   }
 }
