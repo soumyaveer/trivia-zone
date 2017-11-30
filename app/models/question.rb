@@ -4,11 +4,15 @@ class Question < ActiveRecord::Base
   accepts_nested_attributes_for :answers
 
   validates :description, presence: true
-  validate :there_is_atleast_one_correct_answer
+  validate :has_atleast_one_correct_answer
   # TODO: validate that there is atleast one correct answer specified
 
-  def there_is_atleast_one_correct_answer
+  def has_atleast_one_correct_answer
     correct_answers = self.answers.where(correct: true)
-    correct_answers.count < 1 ? true : false
+    if correct_answers.count > 1
+      true
+    else
+      self.errors[:answers] << "should have atleast one correct value"
+    end
   end
 end

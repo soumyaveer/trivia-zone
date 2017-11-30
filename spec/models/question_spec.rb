@@ -8,19 +8,43 @@ describe Question do
       Trivia.create(title: Faker::Lorem.sentence, description: Faker::Lorem.paragraph, topic: topic)
     end
 
-    let(:question) do
-      Question.create(description: "Who was Catelyn Stark?", trivia: trivia)
+    let(:question_1) do
+      FactoryGirl.create(:question, trivia: trivia)
     end
 
-    it 'should fail validation if description is not present' do
-      question.description = nil
+    let(:question_2) do
+      FactoryGirl.create(:question, trivia: trivia)
+    end
 
-      expect(question.valid?).to eql(false)
-      expect(question.errors[:description]).to be_present
+    before do
+      3.times do
+        FactoryGirl.create(:answer, question: question_1, correct: false)
+      end
+      FactoryGirl.create(:answer, question: question_1, correct: true)
+
+      4.times do
+        FactoryGirl.create(:answer, question: question_2, correct:false)
+      end
+    end
+
+
+    it 'should fail validation if description is not present' do
+      question_1.description = nil
+
+      expect(question_1.valid?).to eql(false)
+      expect(question_1.errors[:description]).to be_present
     end
 
     it 'should pass validation with correct attributes' do
-      expect(question.errors[:description]).not_to be_present
+      expect(question_1.errors[:description]).not_to be_present
+    end
+
+    it 'should pass validation if atleast one correct answer is specified' do
+      expect(question_1.errors[:answers]).not_to be_present
+    end
+
+    it 'should fail validation if none of the answers are marked as correct' do
+      expect(question_2.errors.full_messages).to include("Answers should have atleast one correct value")
     end
   end
 
