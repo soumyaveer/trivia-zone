@@ -94,19 +94,45 @@ describe Trivia do
   end
 
   describe "search" do
-
     let(:topic) { Topic.create(name: Faker::Lorem.word)}
     let (:author) { User.create(name: 'sam', email: 'sam@test.com', password: 'samtest@123') }
 
-    let(:trivia) do
+    let(:trivia_1) do
       Trivia.create(title: "House Stark",
-                    description: "This Trivia is related to the history and members of House Stark",
+                    description: "This Trivia is related to the history and members of Warden of the North",
                     topic: topic,
                     author: author)
     end
 
-    it "returns the string searched by the user" do
-      
+    let(:trivia_2) do
+      Trivia.create(title: "Rob and Siblings",
+                    description: "This Trivia is related to the history and siblings of Rob Stark",
+                    topic: topic,
+                    author: author)
+    end
+
+
+    let(:trivia_3) do
+      Trivia.create(title: "Star Wars",
+                    description: "The Jedi Trivia",
+                    topic: topic,
+                    author: author)
+    end
+
+    it "returns the trivia matching the searched string" do
+      searched_string = "Stark"
+
+      searched_trivias = Trivia.search(searched_string)
+
+      expect(searched_trivias).to match_array([trivia_1, trivia_2])
+    end
+
+    it "does not return the trivia that does not match the searched string" do
+      searched_string = "Stark"
+
+      searched_trivias = Trivia.search(searched_string)
+
+      expect(searched_trivias).not_to match_array([trivia_1, trivia_2, trivia_3])
     end
   end
 end
