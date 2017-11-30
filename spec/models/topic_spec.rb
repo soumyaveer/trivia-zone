@@ -79,4 +79,39 @@ describe Topic do
       expect(trivias_authored_by_user_1).not_to match_array([@trivia1, @trivia2, @trivia4])
     end
   end
+
+  describe "players" do
+    before do
+      @topic_1 = FactoryGirl.create(:topic)
+      @topic_2 = FactoryGirl.create(:topic)
+
+      @trivia_1 = create_trivia(6, @topic_1)
+      @trivia_2 = create_trivia(10, @topic_1)
+      @trivia_3 = create_trivia(10, @topic_2)
+
+      @player_1 = FactoryGirl.create(:user)
+      @player_2 = FactoryGirl.create(:user)
+      @player_3 = FactoryGirl.create(:user)
+      @player_4 = FactoryGirl.create(:user)
+      @player_5 = FactoryGirl.create(:user)
+
+
+      @trivia_session_1 = create_trivia_session_with(3, @player_1, @trivia_1) # Score 50
+      @trivia_session_2 = create_trivia_session_with(4, @player_1, @trivia_1) # Score 66
+      @trivia_session_3 = create_trivia_session_with(8, @player_1, @trivia_2) # Score 80
+      @trivia_session_4 = create_trivia_session_with(10, @player_2, @trivia_3) # Score 100
+      @trivia_session_3 = create_trivia_session_with(8, @player_2, @trivia_1) # Score 80
+      @trivia_session_4 = create_trivia_session_with(6, @player_3, @trivia_3) # Score 60
+      @trivia_session_3 = create_trivia_session_with(4, @player_3, @trivia_2) # Score 40
+      @trivia_session_4 = create_trivia_session_with(10, @player_4, @trivia_1) # Score 100
+      @trivia_session_3 = create_trivia_session_with(8, @player_5, @trivia_2) # Score 80
+      @trivia_session_4 = create_trivia_session_with(10, @player_5, @trivia_1) # Score 100
+    end
+
+    it "returns first three players in descending order of scores" do
+      players_for_topic_1 = @topic_1.players
+
+      expect(players_for_topic_1).to match_array([@player_5, @player_1, @player_2])
+    end
+  end
 end
