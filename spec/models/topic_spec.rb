@@ -108,10 +108,16 @@ describe Topic do
       @trivia_session_4 = create_trivia_session_with(10, @player_5, @trivia_1) # Score 100
     end
 
-    it "returns first three players in descending order of scores" do
+    it "returns first three players in descending order of total scores" do
       players_for_topic_1 = @topic_1.players
 
       expect(players_for_topic_1).to match_array([@player_5, @player_1, @player_2])
+    end
+
+    it "does not return more than three players" do
+      players_for_topic_1 = @topic_1.players
+
+      expect(players_for_topic_1).not_to match_array([@player_1, @player_2, @player_3, @player_4, @player_5])
     end
   end
 end
