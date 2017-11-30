@@ -34,12 +34,12 @@ describe Topic do
       @trivia1 = Trivia.create(title: "House Stark",
                     description: "This Trivia is related to the history and members of House Stark",
                     topic_id: topic.id,
-                    user_id: user.id)
+                    author_id: user.id)
 
       @trivia2 = Trivia.create(title: Faker::Lorem.sentence,
                                description: Faker::Lorem.paragraph,
                                topic_id: topic.id,
-                               user_id: user.id)
+                               author_id: user.id)
     end
 
     it 'should have many trivias' do
@@ -62,8 +62,21 @@ describe Topic do
     end
 
     it "returns the trivias for a topic which are authored by user" do
+      trivias_authored_by_user_1 = topic1.trivias_authered_by(author1)
 
       expect(trivias_authored_by_user_1).to match_array([@trivia1, @trivia2])
+    end
+
+    it "does not return trivias authored by other users" do
+      trivias_authored_by_user_1 = topic1.trivias_authered_by(author1)
+
+      expect(trivias_authored_by_user_1).not_to match_array([@trivia1, @trivia2, @trivia3])
+    end
+
+    it "does not return trivias for another topic" do
+      trivias_authored_by_user_1 = topic1.trivias_authered_by(author1)
+
+      expect(trivias_authored_by_user_1).not_to match_array([@trivia1, @trivia2, @trivia4])
     end
   end
 end
