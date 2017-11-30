@@ -46,4 +46,23 @@ describe Topic do
       expect(topic.trivias).to match_array([@trivia1, @trivia2])
     end
   end
+
+  describe "trivias_authored_by" do
+    let(:topic1) {FactoryGirl.create(:topic)}
+    let(:topic2) {FactoryGirl.create(:topic)}
+
+    let (:author1) {FactoryGirl.create(:user)}
+    let (:author2) {FactoryGirl.create(:user)}
+
+    before do
+      @trivia1 = FactoryGirl.create(:trivia, topic: topic1, user: author1)
+      @trivia2 = FactoryGirl.create(:trivia, topic:topic1, user: author1)
+      @trivia3 = FactoryGirl.create(:trivia, topic:topic1, user: author2)
+      @trivia4 = FactoryGirl.create(:trivia, topic:topic2, user: author1)
+    end
+
+    it "returns the trivias for a topic which are authored by user" do
+
+    end
+  end
 end
