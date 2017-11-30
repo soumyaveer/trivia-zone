@@ -55,7 +55,7 @@ describe Trivia do
       @question3 = Question.create(description: Faker::Lorem.sentence, trivia: trivia)
     end
 
-    it ' has_many questions' do
+    it 'has_many questions' do
       expect(trivia.questions).to match_array([@question1, @question2, @question3])
     end
 
@@ -90,6 +90,23 @@ describe Trivia do
       player = FactoryGirl.create(:user)
 
       expect(trivia.max_score_of_user(player)).to eql(0)
+    end
+  end
+
+  describe "search" do
+
+    let(:topic) { Topic.create(name: Faker::Lorem.word)}
+    let (:author) { User.create(name: 'sam', email: 'sam@test.com', password: 'samtest@123') }
+
+    let(:trivia) do
+      Trivia.create(title: "House Stark",
+                    description: "This Trivia is related to the history and members of House Stark",
+                    topic: topic,
+                    author: author)
+    end
+
+    it "returns the string searched by the user" do
+      
     end
   end
 end
