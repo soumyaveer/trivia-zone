@@ -9,4 +9,8 @@ class Trivia < ActiveRecord::Base
 
   validates :title, presence: true
   validates :title, uniqueness: true
+
+  def self.search(string)
+    where('title ILIKE ? OR description ILIKE ?', "%#{string}%", "%#{string}%")
+  end
 end
