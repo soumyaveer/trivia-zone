@@ -41,3 +41,9 @@
     margin-left: $grid-gutter-width * 0.2;
   }
 }
+
+.search {
+  margin-bottom: $line-height-computed * 3 ;
+  font-size: $line-height-computed * 0.75;
+  font-weight: bold;
+}
