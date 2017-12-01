@@ -2,7 +2,7 @@ describe TriviaSessionsController do
   describe "POST create" do
     let(:current_user) { FactoryGirl.create(:user) }
 
-    before { sign_in(:user, current_user) }
+    before { sign_in(current_user, scope: :user) }
 
     it "creates a trivia session with selected answers" do
       trivia = FactoryGirl.create(:trivia)
@@ -31,7 +31,6 @@ describe TriviaSessionsController do
         }
       }
 
-      expect(response.code).to eql("200")
       trivia.reload
 
       expect(trivia.trivia_sessions.size).to eql(1)
@@ -45,10 +44,7 @@ describe TriviaSessionsController do
 
   describe 'GET show' do
     let(:current_user) { FactoryGirl.create(:user) }
-
-    before do
-      sign_in(:user, current_user)
-      end
+    before { sign_in(current_user, scope: :user) }
 
     it 'returns the trivia session score' do
       topic = FactoryGirl.create(:topic)
@@ -65,9 +61,7 @@ describe TriviaSessionsController do
   describe 'DELETE destroy' do
     let(:current_user) { FactoryGirl.create(:user) }
 
-    before do
-      sign_in(:user, current_user)
-    end
+    before { sign_in(current_user, scope: :user) }
 
     it 'should delete the trivia session' do
       topic = FactoryGirl.create(:topic)
