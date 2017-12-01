@@ -25,5 +25,19 @@ describe ApplicationHelper do
       expect(helper.nav_status(:test)).to eql('inactive')
     end
   end
+
+  describe 'nav_item_url' do
+    it 'returns # if current navbar item matches the navbar item' do
+      @current_nav_item = :home
+
+      expect(helper.nav_item_url(:home)).to eql("#")
+    end
+
+    it 'returns url if current navbar item doe not match the navbar item' do
+      @current_nav_item = :home
+
+      expect(helper.nav_item_url(:leaderboard)).to eql(leaderboards_path)
+    end
+  end
 end
 
