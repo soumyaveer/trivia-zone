@@ -61,7 +61,7 @@ describe Question do
       Trivia.create(title: Faker::Lorem.sentence,
                     description: Faker::Lorem.paragraph,
                     topic: topic,
-                    user: user)
+                    author: user)
     end
 
     let(:question) do

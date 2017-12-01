@@ -5,7 +5,7 @@ describe Answer do
     let(:trivia) { Trivia.create(title: Faker::Lorem.sentence,
                                  description: Faker::Lorem.paragraph,
                                  topic: topic,
-                                 user: user )}
+                                 author: user )}
     let(:question) { Question.create(description: Faker::Lorem.sentence, trivia: trivia) }
     let(:answer) { Answer.create(description: "Some Answer", correct: 1, question: question)}
 
@@ -35,7 +35,7 @@ describe Answer do
       Trivia.create(title: Faker::Lorem.sentence,
                     description: Faker::Lorem.paragraph,
                     topic: topic,
-                    user: user)
+                    author: user)
     end
 
 
