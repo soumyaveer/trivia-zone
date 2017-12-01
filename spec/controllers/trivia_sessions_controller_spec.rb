@@ -43,5 +43,22 @@ describe TriviaSessionsController do
     end
   end
 
-  describe
+  describe 'GET show' do
+    let(:current_user) { FactoryGirl.create(:user) }
+
+    before do
+      sign_in(:user, current_user)
+      end
+
+    it 'returns the trivia session score' do
+      topic = FactoryGirl.create(:topic)
+      trivia = create_trivia(10, topic)
+      trivia_session = create_trivia_session_with(4, current_user, trivia) # score 66
+
+      get :show, params: { trivia_id: trivia.id, id: trivia_session.id }
+
+      expect(assigns(:trivia_session)).to eql(trivia_session)
+      expect(response).to render_template('show')
+    end
+  end
 end
