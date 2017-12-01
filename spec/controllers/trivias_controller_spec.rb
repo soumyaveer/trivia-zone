@@ -3,7 +3,7 @@ describe TriviasController do
     let(:topic) { FactoryGirl.create(:topic) }
 
     before do
-      sign_in(:user, FactoryGirl.create(:user))
+      sign_in(FactoryGirl.create(:user), scope: :user)
     end
 
     it "creates a trivia with no questions when none specified" do
@@ -70,6 +70,56 @@ describe TriviasController do
 
       expect(question.answers.incorrect.size).to eql(1)
       expect(question.answers.incorrect.first.description).to eql(incorrect_answer_description)
+    end
+  end
+
+  describe "GET index" do
+    context 'when user is not logged in' do
+      it 'redirects to login page' do
+        get :index
+
+        expect(response).to redirect_to(new_user_session_url)
+      end
+    end
+
+    context 'when the user is logged in' do
+      before do
+        @current_user = FactoryGirl.create(:user)
+        sign_in(@current_user, scope: :user)
+      end
+
+      it 'should render template index' do
+        topic = FactoryGirl.create(:topic)
+
+        get :index, params: {topic_id: topic.id}
+
+        expect(response).to render_template('index')
+      end
+
+      it 'returns all the played trivias for the topic' do
+        topic_1 = FactoryGirl.create(:topic)
+        topic_2 = FactoryGirl.create(:topic)
+        trivia_1 = create_trivia(6, topic_1)
+        trivia_2 = create_trivia(10, topic_1)
+        trivia_3 = create_trivia(10, topic_2)
+
+        get :index, params: { topic_id: topic_1.id }
+
+        expect(assigns(:trivias)).to match_array([trivia_1, trivia_2 ])
+      end
+
+      it 'should not return the trivias of another topic' do
+        topic_1 = FactoryGirl.create(:topic)
+        topic_2 = FactoryGirl.create(:topic)
+        trivia_1 = create_trivia(6, topic_1)
+        trivia_2 = create_trivia(10, topic_1)
+        trivia_3 = create_trivia(10, topic_2)
+
+        get :index, params: { topic_id: topic_1.id }
+
+        expect(assigns(:trivias)).not_to match_array([trivia_1, trivia_2, trivia_3 ])
+
+      end
     end
   end
 end
