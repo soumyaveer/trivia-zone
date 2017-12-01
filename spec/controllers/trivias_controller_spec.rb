@@ -118,8 +118,57 @@ describe TriviasController do
         get :index, params: { topic_id: topic_1.id }
 
         expect(assigns(:trivias)).not_to match_array([trivia_1, trivia_2, trivia_3 ])
-
       end
     end
   end
+
+  describe 'PATCH update' do
+    let(:topic) { FactoryGirl.create(:topic) }
+
+    before do
+      sign_in(FactoryGirl.create(:user), scope: :user)
+    end
+
+    it 'edit trivia' do
+      topic = FactoryGirl.create(:topic)
+      trivia = create_trivia(6, topic)
+      updated_trivia_title = "Another title"
+      question_description = Faker::Lorem.sentence
+      correct_answer_description = Faker::Lorem.sentence
+      incorrect_answer_description = Faker::Lorem.sentence
+
+
+      patch :update, params: {
+        topic_id: topic.id,
+        id: trivia.id,
+        trivia: {
+          title: updated_trivia_title,
+          questions_attributes: [
+            {
+              description: question_description,
+              answers_attributes: [
+                {
+                  description: correct_answer_description,
+                  correct: true
+                },
+                {
+                  description: incorrect_answer_description,
+                  correct: false
+                }
+              ]
+            }
+          ]
+        }
+      }
+
+      expect(response.code).to eql("302")
+      expect(response).to redirect_to(new_trivia_trivia_session_path(trivia))
+
+      updated_trivia = Trivia.find(trivia.id)
+
+      expect(updated_trivia.title).to eql("Another title")
+    end
+  end
+
+
 end
