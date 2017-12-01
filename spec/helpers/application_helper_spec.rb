@@ -11,5 +11,19 @@ describe ApplicationHelper do
       expect(helper.form_group_error_class_for(user, :email)).to eql('')
     end
   end
+
+  describe 'nav_status' do
+    it 'returns active if current navbar item matches the navbar item' do
+      @current_nav_item = :test
+
+      expect(helper.nav_status(:test)).to eql('active')
+    end
+
+    it 'returns inactive if current navbar item does not match the navbar item' do
+      @current_nav_item = :something_else
+
+      expect(helper.nav_status(:test)).to eql('inactive')
+    end
+  end
 end
 
