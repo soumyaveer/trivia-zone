@@ -42,4 +42,6 @@ describe TriviaSessionsController do
         .to match_array([answer_1_for_question_1, answer_2_for_question_2])
     end
   end
+
+  describe
 end

@@ -12,6 +12,12 @@ class TriviaSessionsController < ApplicationController
     end
   end
 
+  def destroy
+    @trivia_session = @trivia.trivia_sessions.find(params[:id])
+    @trivia_session.destroy
+    redirect_to root_path
+  end
+
   def new
     @trivia_session = TriviaSession.new
     @topic = @trivia.topic
@@ -19,13 +25,6 @@ class TriviaSessionsController < ApplicationController
 
   def show
     @trivia_session = @trivia.trivia_sessions.find(params[:id])
-  end
-
-
-  def destroy
-    @trivia_session = @trivia.trivia_sessions.find(params[:id])
-    @trivia_session.destroy
-    redirect_to root_path
   end
 
   private
