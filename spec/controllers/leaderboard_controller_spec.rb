@@ -1,0 +1,3 @@
+describe LeaderboardsController do
+  
+end
