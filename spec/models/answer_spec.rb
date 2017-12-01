@@ -77,8 +77,35 @@ describe Answer do
     end
 
     it "returns the correct answers" do
-      puts Answer.correct.inspect
       expect(Answer.correct).to match_array([@answer2_for_question_1, @answer_1_for_question_2 ])
+    end
+  end
+
+  describe "incorrect" do
+    let(:author) do
+      FactoryGirl.create(:user)
+    end
+
+    let (:topic) do
+      FactoryGirl.create(:topic)
+    end
+
+    let(:trivia) do
+      FactoryGirl.create(:trivia, topic: topic, author: author)
+    end
+
+    before do
+      @question1 = FactoryGirl.create(:question, trivia: trivia)
+      @question2 = FactoryGirl.create(:question, trivia: trivia)
+
+      @answer1_for_question_1 = FactoryGirl.create(:answer, question: @question1, correct: false)
+      @answer2_for_question_1 = FactoryGirl.create(:answer, question: @question1, correct: true)
+      @answer_1_for_question_2 = FactoryGirl.create(:answer, question: @question1, correct: true)
+      @answer_2_for_question_2 = FactoryGirl.create(:answer, question: @question1, correct: false)
+    end
+
+    it "returns the incorrect answers" do
+      expect(Answer.incorrect).to match_array([@answer1_for_question_1, @answer_2_for_question_2 ])
     end
   end
 end
