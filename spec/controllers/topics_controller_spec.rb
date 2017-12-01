@@ -33,4 +33,18 @@ describe TopicsController do
       end
     end
   end
+
+  describe 'POST create' do
+    before do
+      @current_user = FactoryGirl.create(:user)
+      sign_in(:user, @current_user)
+    end
+
+    it 'creates a new topic' do
+      post :create, params: {topic: {name: 'topic-name' }}
+
+      topic1 = Topic.find_by(name: 'topic-name')
+      expect(topic1.present?).to eql(true)
+    end
+  end
 end
