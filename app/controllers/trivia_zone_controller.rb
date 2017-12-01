@@ -7,6 +7,7 @@ class TriviaZoneController < ApplicationController
   end
 
   private
+
   def trivia_zone_params
     params.require(:topic).permit(:name)
     params.require(:trivia_sessions).permit(:user_id, :trivia_id)
