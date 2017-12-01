@@ -170,5 +170,18 @@ describe TriviasController do
     end
   end
 
+  describe 'DELETE destroy' do
+    let(:topic) { FactoryGirl.create(:topic) }
+    before do
+      sign_in(FactoryGirl.create(:user), scope: :user)
+    end
 
+    it 'should delete the trivia' do
+      trivia = create_trivia(6, topic)
+
+      expect do
+        delete :destroy, params: { topic_id: topic.id, id: trivia.id}
+      end.to change(Trivia, :count).by(-1)
+    end
+  end
 end
