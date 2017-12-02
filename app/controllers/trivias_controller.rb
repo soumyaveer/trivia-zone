@@ -2,31 +2,9 @@ class TriviasController < ApplicationController
   before_action :load_trivia, only: [:edit, :update, :destroy]
   before_action :load_topic, only:[:destroy]
 
-  def index
-    @topic = Topic.find_by(id: params[:topic_id])
-    @trivias = @topic.trivias
-
-    @authored_trivias = @topic.trivias_authered_by(current_user)
-  end
-
-  def new
-    @topic = Topic.find(params[:topic_id])
-    @trivia = @topic.trivias.build
-
-    10.times do
-      question = @trivia.questions.build
-
-      4.times do
-        question.answers.build
-      end
-    end
-  end
-
   def create
     @topic = Topic.find_by(id: params[:topic_id])
-
     @trivia = @topic.trivias.build(trivia_params)
-
     @trivia.author = current_user
 
     if @trivia.save
@@ -42,6 +20,26 @@ class TriviasController < ApplicationController
   end
 
   def edit
+  end
+
+  def index
+    @topic = Topic.find_by(id: params[:topic_id])
+    @trivias = @topic.trivias
+
+    @authored_trivias = @topic.trivias_authored_by(current_user)
+  end
+
+  def new
+    @topic = Topic.find(params[:topic_id])
+    @trivia = @topic.trivias.build
+
+    10.times do
+      question = @trivia.questions.build
+
+      4.times do
+        question.answers.build
+      end
+    end
   end
 
   def update

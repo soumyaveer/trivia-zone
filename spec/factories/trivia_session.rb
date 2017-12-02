@@ -1,6 +1,6 @@
-FactoryGirl.define do
+FactoryBot.define do
   factory :trivia_session do
-    user
+    association :player, factory: :user
     trivia
   end
 end

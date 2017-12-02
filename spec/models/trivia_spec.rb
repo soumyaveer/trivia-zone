@@ -1,7 +1,7 @@
 describe Trivia do
   describe 'validations' do
-    let(:topic) { Topic.create(name: Faker::Lorem.word)}
-    let (:author) { User.create(name: 'sam', email: 'sam@test.com', password: 'samtest@123') }
+    let(:topic) { Topic.create(name: Faker::Lorem.word) }
+    let(:author) { User.create(name: 'sam', email: 'sam@test.com', password: 'samtest@123') }
 
     let(:trivia) do
       Trivia.create(title: "House Stark",
@@ -38,7 +38,7 @@ describe Trivia do
       User.create(name: Faker::Name.name, email: Faker::Internet.email, password: "testpassword123")
     end
 
-    let (:topic) do
+    let(:topic) do
       Topic.create(name: Faker::Lorem.word)
     end
 
@@ -50,13 +50,13 @@ describe Trivia do
     end
 
     before do
-      @question1 = Question.create(description: Faker::Lorem.sentence, trivia: trivia)
-      @question2 = Question.create(description: Faker::Lorem.sentence, trivia: trivia)
-      @question3 = Question.create(description: Faker::Lorem.sentence, trivia: trivia)
+      @question_1 = Question.create(description: Faker::Lorem.sentence, trivia: trivia)
+      @question_2 = Question.create(description: Faker::Lorem.sentence, trivia: trivia)
+      @question_3 = Question.create(description: Faker::Lorem.sentence, trivia: trivia)
     end
 
-    it ' has_many questions' do
-      expect(trivia.questions).to match_array([@question1, @question2, @question3])
+    it 'has_many questions' do
+      expect(trivia.questions).to match_array([@question_1, @question_2, @question_3])
     end
 
     it 'belongs to topic' do
@@ -70,10 +70,10 @@ describe Trivia do
 
   describe "max_score_of_user" do
     it "returns the max score of the user in trivia" do
-      topic = FactoryGirl.create(:topic)
+      topic = FactoryBot.create(:topic)
       # setup trivia
       trivia = create_trivia(2, topic)
-      player = FactoryGirl.create(:user)
+      player = FactoryBot.create(:user)
 
       # setup with a score of 50
       create_trivia_session_with(1, player, trivia)
@@ -81,15 +81,58 @@ describe Trivia do
       # setup with a score of 100
       create_trivia_session_with(2, player, trivia)
 
-      expect(trivia.max_score_of_user(player)).to eql(100.00)
+      expect(trivia.max_score_of_player(player)).to eql(100.00)
     end
 
     it "returns 0 if user has not played trivia" do
-      topic = FactoryGirl.create(:topic)
+      topic = FactoryBot.create(:topic)
       trivia = create_trivia(2, topic)
-      player = FactoryGirl.create(:user)
+      player = FactoryBot.create(:user)
 
-      expect(trivia.max_score_of_user(player)).to eql(0)
+      expect(trivia.max_score_of_player(player)).to eql(0)
+    end
+  end
+
+  describe "search" do
+    let(:topic) { Topic.create(name: Faker::Lorem.word) }
+    let(:author) { User.create(name: 'sam', email: 'sam@test.com', password: 'samtest@123') }
+
+    let(:trivia_1) do
+      Trivia.create(title: "House Stark",
+                    description: "This Trivia is related to the history and members of Warden of the North",
+                    topic: topic,
+                    author: author)
+    end
+
+    let(:trivia_2) do
+      Trivia.create(title: "Rob and Siblings",
+                    description: "This Trivia is related to the history and siblings of Rob Stark",
+                    topic: topic,
+                    author: author)
+    end
+
+
+    let(:trivia_3) do
+      Trivia.create(title: "Star Wars",
+                    description: "The Jedi Trivia",
+                    topic: topic,
+                    author: author)
+    end
+
+    it "returns the trivia matching the searched string" do
+      searched_string = "Stark"
+
+      searched_trivias = Trivia.search(searched_string)
+
+      expect(searched_trivias).to match_array([trivia_1, trivia_2])
+    end
+
+    it "does not return the trivia that does not match the searched string" do
+      searched_string = "Stark"
+
+      searched_trivias = Trivia.search(searched_string)
+
+      expect(searched_trivias).not_to match_array([trivia_1, trivia_2, trivia_3])
     end
   end
 end

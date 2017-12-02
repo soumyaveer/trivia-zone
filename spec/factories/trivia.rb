@@ -1,4 +1,4 @@
-FactoryGirl.define do
+FactoryBot.define do
   factory :trivia do
     association :author, factory: :user
     title { Faker::Lorem.sentence }

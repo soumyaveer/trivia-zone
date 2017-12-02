@@ -1,4 +1,14 @@
 class TopicsController < ApplicationController
+  def create
+    @topic = Topic.new(topic_params)
+
+    if @topic.save
+      redirect_to topics_path
+    else
+      render :index
+    end
+  end
+
   def index
     @topics = Topic.all
   end
@@ -8,16 +18,8 @@ class TopicsController < ApplicationController
     @topic = Topic.new
   end
 
-  def create
-    @topic = Topic.new(topic_params)
-    if @topic.save
-      redirect_to topics_path
-    else
-      render :index
-    end
-  end
-
   private
+
   def topic_params
     params.require(:topic).permit(:name)
   end

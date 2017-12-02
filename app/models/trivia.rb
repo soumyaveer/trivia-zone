@@ -1,21 +1,25 @@
-class Trivia < ActiveRecord::Base
-  has_many :trivia_sessions
-  has_many :users, through: :trivia_sessions # TODO: players
+class Trivia < ApplicationRecord
+  has_many :trivia_sessions, dependent: :destroy
+  has_many :players, -> { distinct }, class_name: "User",  through: :trivia_sessions
   belongs_to :topic
   belongs_to :author, class_name: "User"
-  has_many :questions
+  has_many :questions, dependent: :destroy
   has_many :answers, through: :questions
-  accepts_nested_attributes_for :questions, allow_destroy: true
+  accepts_nested_attributes_for :questions
 
   validates :title, presence: true
   validates :title, uniqueness: true
 
-  def self.search(string)
-    where('title LIKE ? OR description LIKE ?', "%#{string}%", "%#{string}%")
+  def max_score_of_player(player)
+    trivia_sessions = self.trivia_sessions.for_player(player)
+    trivia_sessions.map(&:score).max || 0
   end
 
-  def max_score_of_user(user)
-    trivia_sessions = self.trivia_sessions.where(user_id: user.id)
-    trivia_sessions.map(&:score).max || 0
+  def self.authored_by(user)
+    where(author_id: user.id)
+  end
+
+  def self.search(string)
+    where('title LIKE ? OR description LIKE ?', "%#{string}%", "%#{string}%")
   end
 end

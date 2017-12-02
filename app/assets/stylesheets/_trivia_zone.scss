@@ -1,7 +1,7 @@
-.trivia-zone-home{
+.trivia-zone-home {
   .table {
-    #table-header {
-      background: whitesmoke;
+    .table-header {
+      background: $table-bg-active;
       color: black;
     }
   }
@@ -18,24 +18,25 @@
   }
 }
 
-.new-trivia-form, .edit-trivia-form {
+.new-trivia-form,
+.edit-trivia-form {
   .question-field {
-    margin-top: $line-height-computed * 3 ;
+    margin-top: $line-height-computed * 3;
   }
 }
 
-.topic-display{
+.topic-display {
   font-size: $line-height-computed * 0.75;
-  margin-top: $line-height-computed * 0.5 ;
+  margin-top: $line-height-computed * 0.5;
 }
 
 .trivia-display {
   font-size: $line-height-computed * 0.75;
-  margin-top: $line-height-computed * 0.75 ;
+  margin-top: $line-height-computed * 0.75;
 }
 
 .trivia-header {
-  margin-bottom: $line-height-computed * 1.5 ;
+  margin-bottom: $line-height-computed * 1.5;
 
   .trivia-link {
     margin-left: $grid-gutter-width * 0.2;
@@ -43,7 +44,7 @@
 }
 
 .search {
-  margin-bottom: $line-height-computed * 3 ;
+  margin-bottom: $line-height-computed * 3;
   font-size: $line-height-computed * 0.75;
   font-weight: bold;
 }

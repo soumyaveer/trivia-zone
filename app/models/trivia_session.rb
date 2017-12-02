@@ -1,5 +1,5 @@
-class TriviaSession < ActiveRecord::Base
-  belongs_to :user # TODO: rename to player
+class TriviaSession < ApplicationRecord
+  belongs_to :player, class_name: "User"
   belongs_to :trivia
   has_and_belongs_to_many :answers
 
@@ -9,5 +9,9 @@ class TriviaSession < ActiveRecord::Base
 
   def score
     (self.answers.correct.size / self.answers.size.to_f) * 100.00
+  end
+
+  def self.for_player(player)
+    where(player_id: player.id)
   end
 end

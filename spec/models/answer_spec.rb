@@ -1,13 +1,13 @@
 describe Answer do
   describe 'validations' do
-    let(:topic) { Topic.create(name: Faker::Lorem.word)}
-    let(:user) {User.create(name: Faker::Name.name, email: Faker::Internet.email, password: "somepassword123") }
+    let(:topic) { Topic.create(name: Faker::Lorem.word) }
+    let(:user) { User.create(name: Faker::Name.name, email: Faker::Internet.email, password: "somepassword123") }
     let(:trivia) { Trivia.create(title: Faker::Lorem.sentence,
                                  description: Faker::Lorem.paragraph,
                                  topic: topic,
-                                 user: user )}
+                                 author: user) }
     let(:question) { Question.create(description: Faker::Lorem.sentence, trivia: trivia) }
-    let(:answer) { Answer.create(description: "Some Answer", correct: 1, question: question)}
+    let(:answer) { Answer.create(description: "Some Answer", correct: true, question: question) }
 
     it 'should fail validation if description is not present' do
       answer.description = nil
@@ -27,7 +27,7 @@ describe Answer do
       User.create(name: Faker::Name.name, email: Faker::Internet.email, password: "testpassword123")
     end
 
-    let (:topic) do
+    let(:topic) do
       Topic.create(name: Faker::Lorem.word)
     end
 
@@ -35,21 +35,77 @@ describe Answer do
       Trivia.create(title: Faker::Lorem.sentence,
                     description: Faker::Lorem.paragraph,
                     topic: topic,
-                    user: user)
+                    author: user)
     end
 
 
     before do
-      @question1 = Question.create(description: Faker::Lorem.sentence, trivia: trivia)
-      @question2 = Question.create(description: Faker::Lorem.sentence, trivia: trivia)
+      @question_1 = Question.create(description: Faker::Lorem.sentence, trivia: trivia)
+      @question_2 = Question.create(description: Faker::Lorem.sentence, trivia: trivia)
 
-      @answer1 = Answer.create(description: Faker::Lorem.word, question: @question1)
-      @answer2 = Answer.create(description: Faker::Lorem.word,  question: @question2)
+      @answer_1 = Answer.create(description: Faker::Lorem.word, question: @question_1)
+      @answer_2 = Answer.create(description: Faker::Lorem.word,  question: @question_2)
     end
 
     it 'should belong to a question' do
-      expect(@answer1.question).to eql(@question1)
-      expect(@answer2.question).to eql(@question2)
+      expect(@answer_1.question).to eql(@question_1)
+      expect(@answer_2.question).to eql(@question_2)
+    end
+  end
+
+  describe "correct" do
+    let(:author) do
+      FactoryBot.create(:user)
+    end
+
+    let(:topic) do
+      FactoryBot.create(:topic)
+    end
+
+    let(:trivia) do
+      FactoryBot.create(:trivia, topic: topic, author: author)
+    end
+
+    before do
+      @question_1 = FactoryBot.create(:question, trivia: trivia)
+      @question_2 = FactoryBot.create(:question, trivia: trivia)
+
+      @answer_1_for_question_1 = FactoryBot.create(:answer, question: @question_1, correct: false)
+      @answer_2_for_question_1 = FactoryBot.create(:answer, question: @question_1, correct: true)
+      @answer_1_for_question_2 = FactoryBot.create(:answer, question: @question_1, correct: true)
+      @answer_2_for_question_2 = FactoryBot.create(:answer, question: @question_1, correct: false)
+    end
+
+    it "returns the correct answers" do
+      expect(Answer.correct).to match_array([@answer_2_for_question_1, @answer_1_for_question_2])
+    end
+  end
+
+  describe "incorrect" do
+    let(:author) do
+      FactoryBot.create(:user)
+    end
+
+    let(:topic) do
+      FactoryBot.create(:topic)
+    end
+
+    let(:trivia) do
+      FactoryBot.create(:trivia, topic: topic, author: author)
+    end
+
+    before do
+      @question_1 = FactoryBot.create(:question, trivia: trivia)
+      @question_2 = FactoryBot.create(:question, trivia: trivia)
+
+      @answer_1_for_question_1 = FactoryBot.create(:answer, question: @question_1, correct: false)
+      @answer_2_for_question_1 = FactoryBot.create(:answer, question: @question_1, correct: true)
+      @answer_1_for_question_2 = FactoryBot.create(:answer, question: @question_1, correct: true)
+      @answer_2_for_question_2 = FactoryBot.create(:answer, question: @question_1, correct: false)
+    end
+
+    it "returns the incorrect answers" do
+      expect(Answer.incorrect).to match_array([@answer_1_for_question_1, @answer_2_for_question_2])
     end
   end
 end

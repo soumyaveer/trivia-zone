@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20171128064312) do
+ActiveRecord::Schema.define(version: 20171202062720) do
 
   create_table "answers", force: :cascade do |t|
     t.text "description"
@@ -48,7 +48,7 @@ ActiveRecord::Schema.define(version: 20171128064312) do
   end
 
   create_table "trivia_sessions", force: :cascade do |t|
-    t.integer "user_id"
+    t.integer "player_id"
     t.integer "trivia_id"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
