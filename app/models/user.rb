@@ -1,14 +1,14 @@
 class User < ApplicationRecord
   devise :database_authenticatable, :registerable,
-         :recoverable, :rememberable, :trackable, :validatable ,
+         :recoverable, :rememberable, :trackable, :validatable,
          :omniauthable, omniauth_providers: [:facebook]
 
   validates :name, :password, presence: true
 
-  has_many :trivia_sessions, foreign_key: :player_id
+  has_many :trivia_sessions, foreign_key: :player_id, dependent: :destroy
   has_many :trivias, -> { distinct }, through: :trivia_sessions
 
-  has_many :authored_trivias, foreign_key: :author_id, class_name: "Trivia"
+  has_many :authored_trivias, foreign_key: :author_id, class_name: "Trivia", dependent: :destroy
 
   def topic_score(topic)
     trivias_in_topic = self.trivias.select { |trivia| trivia.topic == topic }

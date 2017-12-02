@@ -10,4 +10,8 @@ class TriviaSession < ApplicationRecord
   def score
     (self.answers.correct.size / self.answers.size.to_f) * 100.00
   end
+
+  def self.for_player(player)
+    where(player_id: player.id)
+  end
 end
