@@ -1,13 +1,4 @@
 class TopicsController < ApplicationController
-  def index
-    @topics = Topic.all
-  end
-
-  def new
-    @topics = Topic.all
-    @topic = Topic.new
-  end
-
   def create
     @topic = Topic.new(topic_params)
     if @topic.save
@@ -15,6 +6,15 @@ class TopicsController < ApplicationController
     else
       render :index
     end
+  end
+  
+  def index
+    @topics = Topic.all
+  end
+
+  def new
+    @topics = Topic.all
+    @topic = Topic.new
   end
 
   private
