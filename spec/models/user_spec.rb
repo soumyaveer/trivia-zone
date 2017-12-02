@@ -49,10 +49,10 @@ describe User do
 
   describe "authored trivias" do
     it "returns trivias authored by the specified user" do
-      user = FactoryGirl.create(:user)
+      user = FactoryBot.create(:user)
 
-      trivia_1 = FactoryGirl.create(:trivia, author: user)
-      trivia_2 = FactoryGirl.create(:trivia, author: user)
+      trivia_1 = FactoryBot.create(:trivia, author: user)
+      trivia_2 = FactoryBot.create(:trivia, author: user)
 
       expect(user.reload.authored_trivias).to match_array([trivia_1, trivia_2])
     end
@@ -60,13 +60,13 @@ describe User do
 
   describe "topic_score" do
     it "returns the sum of max scores of all trivias played in this topic" do
-      topic_1 = FactoryGirl.create(:topic)
-      topic_2 = FactoryGirl.create(:topic)
+      topic_1 = FactoryBot.create(:topic)
+      topic_2 = FactoryBot.create(:topic)
       trivia_1 = create_trivia(6, topic_1)
       trivia_2 = create_trivia(10, topic_1)
       trivia_3 = create_trivia(10, topic_2)
 
-      player = FactoryGirl.create(:user)
+      player = FactoryBot.create(:user)
       create_trivia_session_with(3, player, trivia_1) # Score 50
       create_trivia_session_with(4, player, trivia_1) # Score 66
       create_trivia_session_with(8, player, trivia_2) # Score 80

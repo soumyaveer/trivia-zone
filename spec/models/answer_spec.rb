@@ -55,25 +55,25 @@ describe Answer do
 
   describe "correct" do
     let(:author) do
-      FactoryGirl.create(:user)
+      FactoryBot.create(:user)
     end
 
     let (:topic) do
-      FactoryGirl.create(:topic)
+      FactoryBot.create(:topic)
     end
 
     let(:trivia) do
-      FactoryGirl.create(:trivia, topic: topic, author: author)
+      FactoryBot.create(:trivia, topic: topic, author: author)
     end
 
     before do
-      @question1 = FactoryGirl.create(:question, trivia: trivia)
-      @question2 = FactoryGirl.create(:question, trivia: trivia)
+      @question1 = FactoryBot.create(:question, trivia: trivia)
+      @question2 = FactoryBot.create(:question, trivia: trivia)
 
-      @answer1_for_question_1 = FactoryGirl.create(:answer, question: @question1, correct: false)
-      @answer2_for_question_1 = FactoryGirl.create(:answer, question: @question1, correct: true)
-      @answer_1_for_question_2 = FactoryGirl.create(:answer, question: @question1, correct: true)
-      @answer_2_for_question_2 = FactoryGirl.create(:answer, question: @question1, correct: false)
+      @answer1_for_question_1 = FactoryBot.create(:answer, question: @question1, correct: false)
+      @answer2_for_question_1 = FactoryBot.create(:answer, question: @question1, correct: true)
+      @answer_1_for_question_2 = FactoryBot.create(:answer, question: @question1, correct: true)
+      @answer_2_for_question_2 = FactoryBot.create(:answer, question: @question1, correct: false)
     end
 
     it "returns the correct answers" do
@@ -83,25 +83,25 @@ describe Answer do
 
   describe "incorrect" do
     let(:author) do
-      FactoryGirl.create(:user)
+      FactoryBot.create(:user)
     end
 
     let (:topic) do
-      FactoryGirl.create(:topic)
+      FactoryBot.create(:topic)
     end
 
     let(:trivia) do
-      FactoryGirl.create(:trivia, topic: topic, author: author)
+      FactoryBot.create(:trivia, topic: topic, author: author)
     end
 
     before do
-      @question1 = FactoryGirl.create(:question, trivia: trivia)
-      @question2 = FactoryGirl.create(:question, trivia: trivia)
+      @question1 = FactoryBot.create(:question, trivia: trivia)
+      @question2 = FactoryBot.create(:question, trivia: trivia)
 
-      @answer1_for_question_1 = FactoryGirl.create(:answer, question: @question1, correct: false)
-      @answer2_for_question_1 = FactoryGirl.create(:answer, question: @question1, correct: true)
-      @answer_1_for_question_2 = FactoryGirl.create(:answer, question: @question1, correct: true)
-      @answer_2_for_question_2 = FactoryGirl.create(:answer, question: @question1, correct: false)
+      @answer1_for_question_1 = FactoryBot.create(:answer, question: @question1, correct: false)
+      @answer2_for_question_1 = FactoryBot.create(:answer, question: @question1, correct: true)
+      @answer_1_for_question_2 = FactoryBot.create(:answer, question: @question1, correct: true)
+      @answer_2_for_question_2 = FactoryBot.create(:answer, question: @question1, correct: false)
     end
 
     it "returns the incorrect answers" do

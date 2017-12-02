@@ -10,9 +10,9 @@ describe TriviaZoneController do
 
     context 'when the user is logged in' do
       before do
-        @current_user = FactoryGirl.create(:user)
-        @another_user = FactoryGirl.create(:user)
-        sign_in(:user, @current_user)
+        @current_user = FactoryBot.create(:user)
+        @another_user = FactoryBot.create(:user)
+        sign_in(@current_user, scope: :user)
       end
 
       it 'should render template index' do
@@ -22,8 +22,8 @@ describe TriviaZoneController do
       end
 
       it 'returns all the played trivias for the current user' do
-        topic_1 = FactoryGirl.create(:topic)
-        topic_2 = FactoryGirl.create(:topic)
+        topic_1 = FactoryBot.create(:topic)
+        topic_2 = FactoryBot.create(:topic)
         trivia_1 = create_trivia(6, topic_1)
         trivia_2 = create_trivia(10, topic_1)
         trivia_3 = create_trivia(10, topic_2)
@@ -41,8 +41,8 @@ describe TriviaZoneController do
       end
 
       it 'should not return the trivias played by any other user' do
-        topic_1 = FactoryGirl.create(:topic)
-        topic_2 = FactoryGirl.create(:topic)
+        topic_1 = FactoryBot.create(:topic)
+        topic_2 = FactoryBot.create(:topic)
         trivia_1 = create_trivia(6, topic_1)
         trivia_2 = create_trivia(10, topic_1)
         trivia_3 = create_trivia(10, topic_2)

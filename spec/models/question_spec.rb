@@ -9,21 +9,21 @@ describe Question do
     end
 
     let(:question_1) do
-      FactoryGirl.create(:question, trivia: trivia)
+      FactoryBot.create(:question, trivia: trivia)
     end
 
     let(:question_2) do
-      FactoryGirl.create(:question, trivia: trivia)
+      FactoryBot.create(:question, trivia: trivia)
     end
 
     before do
       3.times do
-        FactoryGirl.create(:answer, question: question_1, correct: false)
+        FactoryBot.create(:answer, question: question_1, correct: false)
       end
-      FactoryGirl.create(:answer, question: question_1, correct: true)
+      FactoryBot.create(:answer, question: question_1, correct: true)
 
       4.times do
-        FactoryGirl.create(:answer, question: question_2, correct:false)
+        FactoryBot.create(:answer, question: question_2, correct:false)
       end
     end
 
@@ -41,10 +41,6 @@ describe Question do
 
     it 'should pass validation if atleast one correct answer is specified' do
       expect(question_1.errors[:answers]).not_to be_present
-    end
-
-    it 'should fail validation if none of the answers are marked as correct' do
-      expect(question_2.errors.full_messages).to include("Answers should have atleast one correct value")
     end
   end
 

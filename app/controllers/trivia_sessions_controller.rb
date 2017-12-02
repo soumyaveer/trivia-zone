@@ -3,7 +3,7 @@ class TriviaSessionsController < ApplicationController
 
   def create
     @trivia_session = @trivia.trivia_sessions.build
-    @trivia_session.user = current_user
+    @trivia_session.player = current_user
     @trivia_session.answers << find_answers(@trivia)
     if @trivia_session.save!
       redirect_to trivia_trivia_session_path(@trivia, @trivia_session)

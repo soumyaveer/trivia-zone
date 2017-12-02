@@ -10,8 +10,8 @@ describe LeaderboardsController do
 
     context 'when user is logged in' do
       before do
-        @current_user = FactoryGirl.create(:user)
-        sign_in(:user, @current_user)
+        @current_user = FactoryBot.create(:user)
+        sign_in(@current_user, scope: :user)
       end
 
       it 'should render template index' do
@@ -21,13 +21,13 @@ describe LeaderboardsController do
       end
 
       it 'returns all the topics' do
-        topic_1 = FactoryGirl.create(:topic)
-        topic_2 = FactoryGirl.create(:topic)
+        topic_1 = FactoryBot.create(:topic)
+        topic_2 = FactoryBot.create(:topic)
         trivia_1 = create_trivia(6, topic_1)
         trivia_2 = create_trivia(10, topic_1)
         trivia_3 = create_trivia(10, topic_2)
 
-        player = FactoryGirl.create(:user)
+        player = FactoryBot.create(:user)
         create_trivia_session_with(3, player, trivia_1)
         create_trivia_session_with(4, player, trivia_1)
         create_trivia_session_with(8, player, trivia_2)

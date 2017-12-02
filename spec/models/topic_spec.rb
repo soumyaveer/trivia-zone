@@ -48,17 +48,17 @@ describe Topic do
   end
 
   describe "trivias_authered_by" do
-    let(:topic1) {FactoryGirl.create(:topic)}
-    let(:topic2) {FactoryGirl.create(:topic)}
+    let(:topic1) {FactoryBot.create(:topic)}
+    let(:topic2) {FactoryBot.create(:topic)}
 
-    let (:author1) {FactoryGirl.create(:user)}
-    let (:author2) {FactoryGirl.create(:user)}
+    let (:author1) {FactoryBot.create(:user)}
+    let (:author2) {FactoryBot.create(:user)}
 
     before do
-      @trivia1 = FactoryGirl.create(:trivia, topic: topic1, author: author1)
-      @trivia2 = FactoryGirl.create(:trivia, topic:topic1, author: author1)
-      @trivia3 = FactoryGirl.create(:trivia, topic:topic1, author: author2)
-      @trivia4 = FactoryGirl.create(:trivia, topic:topic2, author: author1)
+      @trivia1 = FactoryBot.create(:trivia, topic: topic1, author: author1)
+      @trivia2 = FactoryBot.create(:trivia, topic:topic1, author: author1)
+      @trivia3 = FactoryBot.create(:trivia, topic:topic1, author: author2)
+      @trivia4 = FactoryBot.create(:trivia, topic:topic2, author: author1)
     end
 
     it "returns the trivias for a topic which are authored by user" do
@@ -82,18 +82,18 @@ describe Topic do
 
   describe "players" do
     before do
-      @topic_1 = FactoryGirl.create(:topic)
-      @topic_2 = FactoryGirl.create(:topic)
+      @topic_1 = FactoryBot.create(:topic)
+      @topic_2 = FactoryBot.create(:topic)
 
       @trivia_1 = create_trivia(6, @topic_1)
       @trivia_2 = create_trivia(10, @topic_1)
       @trivia_3 = create_trivia(10, @topic_2)
 
-      @player_1 = FactoryGirl.create(:user)
-      @player_2 = FactoryGirl.create(:user)
-      @player_3 = FactoryGirl.create(:user)
-      @player_4 = FactoryGirl.create(:user)
-      @player_5 = FactoryGirl.create(:user)
+      @player_1 = FactoryBot.create(:user)
+      @player_2 = FactoryBot.create(:user)
+      @player_3 = FactoryBot.create(:user)
+      @player_4 = FactoryBot.create(:user)
+      @player_5 = FactoryBot.create(:user)
 
 
       @trivia_session_1 = create_trivia_session_with(3, @player_1, @trivia_1) # Score 50

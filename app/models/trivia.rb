@@ -1,7 +1,6 @@
 class Trivia < ActiveRecord::Base
   has_many :trivia_sessions
-  has_many :users, through: :trivia_sessions # TODO: players
-  # has_many :players, class_name: "User",  through: :trivia_sessions
+  has_many :players, class_name: "User",  through: :trivia_sessions
   belongs_to :topic
   belongs_to :author, class_name: "User"
   has_many :questions
@@ -11,8 +10,8 @@ class Trivia < ActiveRecord::Base
   validates :title, presence: true
   validates :title, uniqueness: true
 
-  def max_score_of_user(user)
-    trivia_sessions = self.trivia_sessions.where(user_id: user.id)
+  def max_score_of_player(player)
+    trivia_sessions = self.trivia_sessions.where(player_id: player.id)
     trivia_sessions.map(&:score).max || 0
   end
 

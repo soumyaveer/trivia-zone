@@ -10,9 +10,9 @@ describe TopicsController do
 
     context 'when user is logged in' do
       before do
-        @current_user = FactoryGirl.create(:user)
-        @another_user = FactoryGirl.create(:user)
-        sign_in(:user, @current_user)
+        @current_user = FactoryBot.create(:user)
+        @another_user = FactoryBot.create(:user)
+        sign_in(@current_user, scope: :user)
 
       end
 
@@ -23,9 +23,9 @@ describe TopicsController do
       end
 
       it 'returns all the topics' do
-        topic1 = FactoryGirl.create(:topic)
-        topic2 = FactoryGirl.create(:topic)
-        topic3 = FactoryGirl.create(:topic)
+        topic1 = FactoryBot.create(:topic)
+        topic2 = FactoryBot.create(:topic)
+        topic3 = FactoryBot.create(:topic)
 
         get :index
 
@@ -36,8 +36,8 @@ describe TopicsController do
 
   describe 'POST create' do
     before do
-      @current_user = FactoryGirl.create(:user)
-      sign_in(:user, @current_user)
+      @current_user = FactoryBot.create(:user)
+      sign_in(@current_user, scope: :user)
     end
 
     it 'creates a new topic' do

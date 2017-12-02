@@ -6,7 +6,7 @@ class Topic < ActiveRecord::Base
     all_players_for_topic = []
     self.trivias.each do |trivia|
       trivia.trivia_sessions.each do |trivia_session|
-        all_players_for_topic << trivia_session.user
+        all_players_for_topic << trivia_session.player
       end
     end
     all_players_for_topic.uniq.sort {|player_a, player_b| player_b.topic_score(self) <=> player_a.topic_score(self)}.first(3)

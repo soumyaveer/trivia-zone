@@ -1,10 +1,10 @@
 describe TriviaSession do
   describe "associations" do
     it "can have answers" do
-      trivia_session = FactoryGirl.create(:trivia_session)
-      answer_1 = FactoryGirl.create(:answer)
-      answer_2 = FactoryGirl.create(:answer)
-      answer_3 = FactoryGirl.create(:answer)
+      trivia_session = FactoryBot.create(:trivia_session)
+      answer_1 = FactoryBot.create(:answer)
+      answer_2 = FactoryBot.create(:answer)
+      answer_3 = FactoryBot.create(:answer)
 
       trivia_session.answers << answer_1
       trivia_session.answers << answer_2
@@ -18,9 +18,9 @@ describe TriviaSession do
 
   describe "score" do
     it "returns the correct answers as a percentage" do
-      trivia_session = FactoryGirl.create(:trivia_session)
-      answer_1 = FactoryGirl.create(:answer, correct: true)
-      answer_2 = FactoryGirl.create(:answer, correct: false)
+      trivia_session = FactoryBot.create(:trivia_session)
+      answer_1 = FactoryBot.create(:answer, correct: true)
+      answer_2 = FactoryBot.create(:answer, correct: false)
       trivia_session.answers = [answer_1, answer_2]
       trivia_session.save!
 

@@ -70,10 +70,10 @@ describe Trivia do
 
   describe "max_score_of_user" do
     it "returns the max score of the user in trivia" do
-      topic = FactoryGirl.create(:topic)
+      topic = FactoryBot.create(:topic)
       # setup trivia
       trivia = create_trivia(2, topic)
-      player = FactoryGirl.create(:user)
+      player = FactoryBot.create(:user)
 
       # setup with a score of 50
       create_trivia_session_with(1, player, trivia)
@@ -81,15 +81,15 @@ describe Trivia do
       # setup with a score of 100
       create_trivia_session_with(2, player, trivia)
 
-      expect(trivia.max_score_of_user(player)).to eql(100.00)
+      expect(trivia.max_score_of_player(player)).to eql(100.00)
     end
 
     it "returns 0 if user has not played trivia" do
-      topic = FactoryGirl.create(:topic)
+      topic = FactoryBot.create(:topic)
       trivia = create_trivia(2, topic)
-      player = FactoryGirl.create(:user)
+      player = FactoryBot.create(:user)
 
-      expect(trivia.max_score_of_user(player)).to eql(0)
+      expect(trivia.max_score_of_player(player)).to eql(0)
     end
   end
 

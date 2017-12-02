@@ -1,9 +1,9 @@
 describe TriviasController do
   describe "POST create" do
-    let(:topic) { FactoryGirl.create(:topic) }
+    let(:topic) { FactoryBot.create(:topic) }
 
     before do
-      sign_in(FactoryGirl.create(:user), scope: :user)
+      sign_in(FactoryBot.create(:user), scope: :user)
     end
 
     it "creates a trivia with no questions when none specified" do
@@ -84,12 +84,12 @@ describe TriviasController do
 
     context 'when the user is logged in' do
       before do
-        @current_user = FactoryGirl.create(:user)
+        @current_user = FactoryBot.create(:user)
         sign_in(@current_user, scope: :user)
       end
 
       it 'should render template index' do
-        topic = FactoryGirl.create(:topic)
+        topic = FactoryBot.create(:topic)
 
         get :index, params: {topic_id: topic.id}
 
@@ -97,8 +97,8 @@ describe TriviasController do
       end
 
       it 'returns all the played trivias for the topic' do
-        topic_1 = FactoryGirl.create(:topic)
-        topic_2 = FactoryGirl.create(:topic)
+        topic_1 = FactoryBot.create(:topic)
+        topic_2 = FactoryBot.create(:topic)
         trivia_1 = create_trivia(6, topic_1)
         trivia_2 = create_trivia(10, topic_1)
         trivia_3 = create_trivia(10, topic_2)
@@ -109,8 +109,8 @@ describe TriviasController do
       end
 
       it 'should not return the trivias of another topic' do
-        topic_1 = FactoryGirl.create(:topic)
-        topic_2 = FactoryGirl.create(:topic)
+        topic_1 = FactoryBot.create(:topic)
+        topic_2 = FactoryBot.create(:topic)
         trivia_1 = create_trivia(6, topic_1)
         trivia_2 = create_trivia(10, topic_1)
         trivia_3 = create_trivia(10, topic_2)
@@ -123,14 +123,14 @@ describe TriviasController do
   end
 
   describe 'PATCH update' do
-    let(:topic) { FactoryGirl.create(:topic) }
+    let(:topic) { FactoryBot.create(:topic) }
 
     before do
-      sign_in(FactoryGirl.create(:user), scope: :user)
+      sign_in(FactoryBot.create(:user), scope: :user)
     end
 
     it 'edit trivia' do
-      topic = FactoryGirl.create(:topic)
+      topic = FactoryBot.create(:topic)
       trivia = create_trivia(6, topic)
       updated_trivia_title = "Another title"
       question_description = Faker::Lorem.sentence
@@ -171,9 +171,9 @@ describe TriviasController do
   end
 
   describe 'DELETE destroy' do
-    let(:topic) { FactoryGirl.create(:topic) }
+    let(:topic) { FactoryBot.create(:topic) }
     before do
-      sign_in(FactoryGirl.create(:user), scope: :user)
+      sign_in(FactoryBot.create(:user), scope: :user)
     end
 
     it 'should delete the trivia' do
