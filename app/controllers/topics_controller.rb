@@ -7,7 +7,7 @@ class TopicsController < ApplicationController
       render :index
     end
   end
-  
+
   def index
     @topics = Topic.all
   end
