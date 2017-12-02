@@ -1,6 +1,6 @@
 describe User do
   describe 'validations' do
-    let(:user) { User.create(name: Faker::Name.name, email: Faker::Internet.email, password: 'testpass123')}
+    let(:user) { User.create(name: Faker::Name.name, email: Faker::Internet.email, password: 'testpass123') }
 
     it 'should fail validation if user\'s name is not present' do
       user.name = nil
@@ -28,22 +28,22 @@ describe User do
   end
 
   describe 'relationship' do
-    let(:author) { User.create(name: Faker::Name.name, email: Faker::Internet.email, password: 'testpass123')}
+    let(:author) { User.create(name: Faker::Name.name, email: Faker::Internet.email, password: 'testpass123') }
 
-    let (:topic) do
+    let(:topic) do
       Topic.create(name: Faker::Lorem.word)
     end
 
     before do
-      @trivia1 = create_trivia(6, topic)
-      @trivia2 = create_trivia(6, topic)
+      @trivia_1 = create_trivia(6, topic)
+      @trivia_2 = create_trivia(6, topic)
 
-      @trivia_session1 = create_trivia_session_with(3, author, @trivia1)
-      @trivia_session2 = create_trivia_session_with(8, author, @trivia2)
+      @trivia_session_1 = create_trivia_session_with(3, author, @trivia_1)
+      @trivia_session_2 = create_trivia_session_with(8, author, @trivia_2)
     end
 
     it 'has many trivia' do
-      expect(author.trivias).to match_array([@trivia1, @trivia2])
+      expect(author.trivias).to match_array([@trivia_1, @trivia_2])
     end
   end
 

@@ -26,8 +26,6 @@ gem 'devise'
 gem "omniauth"
 gem "omniauth-facebook"
 
-gem 'dotenv-rails', groups: [:development, :test]
-
 # Use Redis adapter to run Action Cable in production
 # gem 'redis', '~> 3.0'
 # Use ActiveModel has_secure_password
@@ -38,9 +36,9 @@ gem 'dotenv-rails', groups: [:development, :test]
 
 group :development, :test do
   # Call 'byebug' anywhere in the code to stop execution and get a debugger console
-  gem 'byebug', platforms: [:mri, :mingw, :x64_mingw]
+  gem 'byebug', platforms: %i[mri mingw x64_mingw]
   # Adds support for Capybara system testing and selenium driver
-
+  gem 'dotenv-rails'
   gem 'faker'
   gem 'rspec-rails', '~> 3.5'
 end
@@ -52,6 +50,9 @@ group :development do
   # Spring speeds up development by keeping your application running in the background. Read more: https://github.com/rails/spring
   gem 'spring'
   gem 'spring-watcher-listen', '~> 2.0.0'
+
+  # Style checkers
+  gem "rubocop"
 end
 
 group :test do
@@ -59,4 +60,4 @@ group :test do
   gem 'rails-controller-testing'
 end
 # Windows does not include zoneinfo files, so bundle the tzinfo-data gem
-gem 'tzinfo-data', platforms: [:mingw, :mswin, :x64_mingw, :jruby]
+gem 'tzinfo-data', platforms: %i[mingw mswin x64_mingw jruby]

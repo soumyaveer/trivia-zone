@@ -1,7 +1,7 @@
 describe Trivia do
   describe 'validations' do
-    let(:topic) { Topic.create(name: Faker::Lorem.word)}
-    let (:author) { User.create(name: 'sam', email: 'sam@test.com', password: 'samtest@123') }
+    let(:topic) { Topic.create(name: Faker::Lorem.word) }
+    let(:author) { User.create(name: 'sam', email: 'sam@test.com', password: 'samtest@123') }
 
     let(:trivia) do
       Trivia.create(title: "House Stark",
@@ -38,7 +38,7 @@ describe Trivia do
       User.create(name: Faker::Name.name, email: Faker::Internet.email, password: "testpassword123")
     end
 
-    let (:topic) do
+    let(:topic) do
       Topic.create(name: Faker::Lorem.word)
     end
 
@@ -50,13 +50,13 @@ describe Trivia do
     end
 
     before do
-      @question1 = Question.create(description: Faker::Lorem.sentence, trivia: trivia)
-      @question2 = Question.create(description: Faker::Lorem.sentence, trivia: trivia)
-      @question3 = Question.create(description: Faker::Lorem.sentence, trivia: trivia)
+      @question_1 = Question.create(description: Faker::Lorem.sentence, trivia: trivia)
+      @question_2 = Question.create(description: Faker::Lorem.sentence, trivia: trivia)
+      @question_3 = Question.create(description: Faker::Lorem.sentence, trivia: trivia)
     end
 
     it 'has_many questions' do
-      expect(trivia.questions).to match_array([@question1, @question2, @question3])
+      expect(trivia.questions).to match_array([@question_1, @question_2, @question_3])
     end
 
     it 'belongs to topic' do
@@ -94,8 +94,8 @@ describe Trivia do
   end
 
   describe "search" do
-    let(:topic) { Topic.create(name: Faker::Lorem.word)}
-    let (:author) { User.create(name: 'sam', email: 'sam@test.com', password: 'samtest@123') }
+    let(:topic) { Topic.create(name: Faker::Lorem.word) }
+    let(:author) { User.create(name: 'sam', email: 'sam@test.com', password: 'samtest@123') }
 
     let(:trivia_1) do
       Trivia.create(title: "House Stark",

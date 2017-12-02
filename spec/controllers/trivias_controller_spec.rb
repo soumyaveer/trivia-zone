@@ -92,7 +92,7 @@ describe TriviasController do
       it 'should render template index' do
         topic = FactoryBot.create(:topic)
 
-        get :index, params: {topic_id: topic.id}
+        get :index, params: { topic_id: topic.id }
 
         expect(response).to render_template('index')
       end
@@ -102,11 +102,11 @@ describe TriviasController do
         topic_2 = FactoryBot.create(:topic)
         trivia_1 = create_trivia(6, topic_1)
         trivia_2 = create_trivia(10, topic_1)
-        trivia_3 = create_trivia(10, topic_2)
+        create_trivia(10, topic_2)
 
         get :index, params: { topic_id: topic_1.id }
 
-        expect(assigns(:trivias)).to match_array([trivia_1, trivia_2 ])
+        expect(assigns(:trivias)).to match_array([trivia_1, trivia_2])
       end
 
       it 'should not return the trivias of another topic' do
@@ -118,7 +118,7 @@ describe TriviasController do
 
         get :index, params: { topic_id: topic_1.id }
 
-        expect(assigns(:trivias)).not_to match_array([trivia_1, trivia_2, trivia_3 ])
+        expect(assigns(:trivias)).not_to match_array([trivia_1, trivia_2, trivia_3])
       end
     end
   end
@@ -137,7 +137,6 @@ describe TriviasController do
       question_description = Faker::Lorem.sentence
       correct_answer_description = Faker::Lorem.sentence
       incorrect_answer_description = Faker::Lorem.sentence
-
 
       patch :update, params: {
         topic_id: topic.id,
@@ -181,7 +180,7 @@ describe TriviasController do
       trivia = create_trivia(6, topic)
 
       expect do
-        delete :destroy, params: { topic_id: topic.id, id: trivia.id}
+        delete :destroy, params: { topic_id: topic.id, id: trivia.id }
       end.to change(Trivia, :count).by(-1)
     end
   end

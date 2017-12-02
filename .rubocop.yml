@@ -1,0 +1,21 @@
+Documentation:
+  Enabled: false
+Metrics/BlockLength:
+  Exclude:
+    - 'Rakefile'
+    - '**/*.rake'
+    - 'spec/**/*.rb'
+Metrics/LineLength:
+  Max: 120
+Style/RedundantSelf:
+  Enabled: false
+Style/FrozenStringLiteralComment:
+  Enabled: false
+Naming/VariableNumber:
+  EnforcedStyle: 'snake_case'
+
+# Temporarily disabled. Enable these rules later
+Style/StringLiterals:
+  Enabled: false
+Bundler/OrderedGems:
+  Enabled: false

@@ -1,6 +1,6 @@
 describe Question do
   describe 'validations' do
-    let (:topic) do
+    let(:topic) do
       Topic.create(name: Faker::Lorem.word)
     end
 
@@ -49,7 +49,7 @@ describe Question do
       User.create(name: Faker::Name.name, email: Faker::Internet.email, password: "testpassword123")
     end
 
-    let (:topic) do
+    let(:topic) do
       Topic.create(name: Faker::Lorem.word)
     end
 
@@ -65,14 +65,14 @@ describe Question do
     end
 
     before do
-      @answer1 = Answer.create(description: Faker::Lorem.word, question: question)
-      @answer2 = Answer.create(description: Faker::Lorem.word,  question: question)
+      @answer_1 = Answer.create(description: Faker::Lorem.word, question: question)
+      @answer_2 = Answer.create(description: Faker::Lorem.word,  question: question)
       @answer3 = Answer.create(description: Faker::Lorem.word,  question: question)
       @answer4 = Answer.create(description: Faker::Lorem.word, correct: 1,  question: question)
     end
 
     it 'should have four answer options' do
-      expect(question.answers).to match_array([@answer1, @answer2, @answer3, @answer4])
+      expect(question.answers).to match_array([@answer_1, @answer_2, @answer3, @answer4])
     end
 
     it 'belongs to a trivia' do

@@ -69,7 +69,7 @@ describe TriviaSessionsController do
       trivia_session_1 = create_trivia_session_with(4, current_user, trivia) # score 66
       trivia_session_2 = create_trivia_session_with(10, current_user, trivia) # score 100
       expect do
-        delete :destroy, params: {trivia_id: trivia.id, id: trivia_session_1.id}
+        delete :destroy, params: { trivia_id: trivia.id, id: trivia_session_1.id}
         end.to change(TriviaSession, :count).by(-1)
 
       expect(assigns(:trivia_sessions)).not_to match_array([trivia_session_1, trivia_session_2])

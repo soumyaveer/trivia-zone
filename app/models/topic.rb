@@ -1,6 +1,6 @@
 class Topic < ApplicationRecord
   has_many :trivias, dependent: :destroy
-  has_many :players, -> { distinct }, class_name: "User", through: :trivias
+  has_many :players, -> { distinct }, class_name: 'User', through: :trivias
   validates :name, presence: true, uniqueness: true
 
   def top_players
