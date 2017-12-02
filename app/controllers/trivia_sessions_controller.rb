@@ -2,10 +2,10 @@ class TriviaSessionsController < ApplicationController
   before_action :load_trivia, only: [:create, :new, :show, :destroy]
 
   def create
-    @trivia_session = @trivia.trivia_sessions.build
-    @trivia_session.player = current_user
+    @trivia_session = @trivia.trivia_sessions.build(player: current_user)
     @trivia_session.answers << find_answers(@trivia)
-    if @trivia_session.save!
+
+    if @trivia_session.save
       redirect_to trivia_trivia_session_path(@trivia, @trivia_session)
     else
       render :new
@@ -13,14 +13,13 @@ class TriviaSessionsController < ApplicationController
   end
 
   def destroy
-    @trivia_session = @trivia.trivia_sessions.find(params[:id])
-    @trivia_session.destroy
+    trivia_session = @trivia.trivia_sessions.find(params[:id])
+    trivia_session.destroy
     redirect_to root_path
   end
 
   def new
-    @trivia_session = TriviaSession.new
-    @topic = @trivia.topic
+    @trivia_session = TriviaSession.new(trivia: @trivia)
   end
 
   def show

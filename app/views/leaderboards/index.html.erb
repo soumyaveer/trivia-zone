@@ -3,22 +3,26 @@
     <div class="leaderboard">
       <% @topics.each do |topic| %>
         <% if topic.top_players.present? %>
-          <h3><%= topic.name%></h3>
-            <table class="table table-bordered">
-              <tr id="table-header">
-                <th>Name</th>
-                <th>Score</th>
+          <h3><%= topic.name %></h3>
+          <table class="table table-bordered">
+            <thead>
+            <tr class="table-header">
+              <th>Name</th>
+              <th>Score</th>
+            </tr>
+            </thead>
+            <tbody>
+            <% topic.top_players.each do |player| %>
+              <tr>
+                <td><%= player.name.capitalize %></td>
+                <td><%= player.topic_score(topic) %></td>
               </tr>
-              <% topic.top_players.each do |player| %>
-                <tr>
-                  <td><%= player.name.capitalize %></td>
-                  <td><%= player.topic_score(topic) %></td>
-                </tr>
-              <% end %>
-        </table>
+            <% end %>
+            </tbody>
+          </table>
         <% end %>
       <% end %>
     </div>
-    <%= link_to "Back", root_path , class: "pull-right"%>
+    <%= link_to "Back", root_path, class: "pull-right" %>
   </div>
 </div>

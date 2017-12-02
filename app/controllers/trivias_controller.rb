@@ -4,9 +4,7 @@ class TriviasController < ApplicationController
 
   def create
     @topic = Topic.find_by(id: params[:topic_id])
-
     @trivia = @topic.trivias.build(trivia_params)
-
     @trivia.author = current_user
 
     if @trivia.save
