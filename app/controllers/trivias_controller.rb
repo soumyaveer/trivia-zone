@@ -28,7 +28,7 @@ class TriviasController < ApplicationController
     @topic = Topic.find_by(id: params[:topic_id])
     @trivias = @topic.trivias
 
-    @authored_trivias = @topic.trivias_authered_by(current_user)
+    @authored_trivias = @topic.trivias_authored_by(current_user)
   end
 
   def new

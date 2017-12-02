@@ -1,4 +1,4 @@
-class TriviaSession < ActiveRecord::Base
+class TriviaSession < ApplicationRecord
   belongs_to :player, class_name: "User"
   belongs_to :trivia
   has_and_belongs_to_many :answers

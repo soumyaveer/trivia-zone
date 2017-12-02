@@ -62,25 +62,25 @@ describe Topic do
     end
 
     it "returns the trivias for a topic which are authored by user" do
-      trivias_authored_by_user_1 = topic1.trivias_authered_by(author1)
+      trivias_authored_by_user_1 = topic1.trivias_authored_by(author1)
 
       expect(trivias_authored_by_user_1).to match_array([@trivia1, @trivia2])
     end
 
     it "does not return trivias authored by other users" do
-      trivias_authored_by_user_1 = topic1.trivias_authered_by(author1)
+      trivias_authored_by_user_1 = topic1.trivias_authored_by(author1)
 
       expect(trivias_authored_by_user_1).not_to match_array([@trivia1, @trivia2, @trivia3])
     end
 
     it "does not return trivias for another topic" do
-      trivias_authored_by_user_1 = topic1.trivias_authered_by(author1)
+      trivias_authored_by_user_1 = topic1.trivias_authored_by(author1)
 
       expect(trivias_authored_by_user_1).not_to match_array([@trivia1, @trivia2, @trivia4])
     end
   end
 
-  describe "players" do
+  describe "top_players" do
     before do
       @topic_1 = FactoryBot.create(:topic)
       @topic_2 = FactoryBot.create(:topic)
@@ -109,13 +109,13 @@ describe Topic do
     end
 
     it "returns first three players in descending order of total scores" do
-      players_for_topic_1 = @topic_1.players
+      players_for_topic_1 = @topic_1.top_players
 
       expect(players_for_topic_1).to match_array([@player_5, @player_1, @player_2])
     end
 
     it "does not return more than three players" do
-      players_for_topic_1 = @topic_1.players
+      players_for_topic_1 = @topic_1.top_players
 
       expect(players_for_topic_1).not_to match_array([@player_1, @player_2, @player_3, @player_4, @player_5])
     end
