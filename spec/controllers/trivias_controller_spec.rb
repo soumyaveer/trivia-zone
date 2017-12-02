@@ -76,7 +76,8 @@ describe TriviasController do
   describe "GET index" do
     context 'when user is not logged in' do
       it 'redirects to login page' do
-        get :index
+        topic = FactoryBot.create(:topic)
+        get :index, params: { topic_id: topic.id }
 
         expect(response).to redirect_to(new_user_session_url)
       end
