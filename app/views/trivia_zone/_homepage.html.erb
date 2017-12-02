@@ -2,10 +2,10 @@
   <div class="trivia-zone-home">
     <h2>Welcome <%= current_user.name.capitalize %>!</h2>
 
-    <% if @searched_string %>
-      <h3 class="text-center">Search results for: <mark><%= @searched_string %></mark></h3>
+    <% if searched_string %>
+      <h3 class="text-center">Search results for: <mark><%= searched_string %></mark></h3>
       <ul class="list-unstyled text-center search">
-        <% @trivia.each do |trivia| %>
+        <% searched_trivias.each do |trivia| %>
           <li><%= link_to trivia.title, topic_trivias_path(trivia.topic) %></li>
         <% end %>
       </ul>
@@ -13,14 +13,14 @@
     <% end %>
 
     <h3>Played Trivias:</h3>
-    <% if @trivia_sessions.present? %>
+    <% if trivia_sessions.present? %>
       <table class="table table-bordered table-hover">
         <tr class="table-header">
           <th>Name</th>
           <th>Score</th>
           <th>Delete Played Trivia</th>
         </tr>
-        <% @trivia_sessions.each do |trivia_session| %>
+        <% trivia_sessions.each do |trivia_session| %>
           <tr>
             <td>
               <%= trivia_session.trivia.title %>

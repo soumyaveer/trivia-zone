@@ -54,6 +54,7 @@ group :development do
   gem "database_cleaner"
 
   # Style checkers
+  gem 'rails_best_practices', require: false
   gem "rubocop", require: false
   gem "scss_lint", require: false
 end

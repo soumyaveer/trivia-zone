@@ -28,10 +28,6 @@ class TriviaSessionsController < ApplicationController
 
   private
 
-  def create_params
-    params.require(:trivia_session).permit(:answer_ids => [] )
-  end
-
   def find_answers(trivia)
     questions = params[:trivia_session][:question]
     current_answer_ids = []

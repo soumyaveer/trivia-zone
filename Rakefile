@@ -11,7 +11,12 @@ if Rails.env.development?
 
   namespace :stylecheck do
     desc "Runs rubocop and scss-lint"
-    task default: [:ruby, :scss]
+    task default: [:ruby, :scss, :rails]
+
+    desc "Runs rails_best_practices"
+    task :rails do
+      sh "rails_best_practices ."
+    end
 
     desc "Runs rubocop"
     task :ruby do

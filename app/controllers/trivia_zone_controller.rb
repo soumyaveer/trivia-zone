@@ -9,7 +9,7 @@ class TriviaZoneController < ApplicationController
   private
 
   def load_trivia
-    @trivia = load_trivia_for_search_params(params[:search]) if params[:search]
+    @searched_trivias = load_trivia_for_search_params(params[:search]) if params[:search]
   end
 
   def load_trivia_for_search_params(search)
