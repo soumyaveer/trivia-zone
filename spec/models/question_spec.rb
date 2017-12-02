@@ -68,7 +68,7 @@ describe Question do
       @answer_1 = Answer.create(description: Faker::Lorem.word, question: question)
       @answer_2 = Answer.create(description: Faker::Lorem.word,  question: question)
       @answer3 = Answer.create(description: Faker::Lorem.word,  question: question)
-      @answer4 = Answer.create(description: Faker::Lorem.word, correct: 1,  question: question)
+      @answer4 = Answer.create(description: Faker::Lorem.word, correct: true,  question: question)
     end
 
     it 'should have four answer options' do

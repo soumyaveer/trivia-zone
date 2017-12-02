@@ -7,7 +7,7 @@ describe Answer do
                                  topic: topic,
                                  author: user) }
     let(:question) { Question.create(description: Faker::Lorem.sentence, trivia: trivia) }
-    let(:answer) { Answer.create(description: "Some Answer", correct: 1, question: question) }
+    let(:answer) { Answer.create(description: "Some Answer", correct: true, question: question) }
 
     it 'should fail validation if description is not present' do
       answer.description = nil

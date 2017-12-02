@@ -51,8 +51,11 @@ group :development do
   gem 'spring'
   gem 'spring-watcher-listen', '~> 2.0.0'
 
+  gem "database_cleaner"
+
   # Style checkers
-  gem "rubocop"
+  gem "rubocop", require: false
+  gem "scss_lint", require: false
 end
 
 group :test do
