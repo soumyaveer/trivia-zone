@@ -26,5 +26,10 @@ describe TriviaSession do
 
       expect(trivia_session.score).to eql(50.00)
     end
+
+    it "returns 0 if no questions answered yet" do
+      trivia_session = FactoryBot.create(:trivia_session)
+      expect(trivia_session.score).to eql(0.0)
+    end
   end
 end

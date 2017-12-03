@@ -62,17 +62,20 @@ class TriviasController < ApplicationController
   end
 
   def trivia_params
-    params.require(:trivia).permit(:title,
-                                   :description,
-                                   questions_attributes:
-                                     [:id,
-                                      :description,
-                                      answers_attributes:
-                                        [:id,
-                                         :description,
-                                         :correct
-                                        ]
-                                     ]
+    params.require(:trivia).permit(
+      :title,
+      :description,
+      questions_attributes:
+        [
+          :id,
+          :description,
+          answers_attributes:
+            [
+              :id,
+              :description,
+              :correct
+            ]
+        ]
 
     )
   end

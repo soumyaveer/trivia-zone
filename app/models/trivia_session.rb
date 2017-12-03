@@ -8,6 +8,8 @@ class TriviaSession < ApplicationRecord
   scope :order_by_created_at, (-> { order(created_at: :desc) })
 
   def score
+    return 0.0 if self.answers.blank?
+
     (self.answers.correct.size / self.answers.size.to_f) * 100.00
   end
 
