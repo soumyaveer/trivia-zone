@@ -3,14 +3,22 @@ class TriviaSession < ApplicationRecord
   belongs_to :trivia
   has_and_belongs_to_many :answers
 
-  accepts_nested_attributes_for :answers
-
   scope :order_by_created_at, (-> { order(created_at: :desc) })
 
   def score
     return 0.0 if self.answers.blank?
 
     (self.answers.correct.size / self.answers.size.to_f) * 100.00
+  end
+
+  def question=(questions_hash)
+    answer_attribute_sets = questions_hash.values
+
+    answer_ids = answer_attribute_sets.map do |answer_attributes|
+      answer_attributes[:answer_id]
+    end
+
+    self.answers = Answer.where(id: answer_ids)
   end
 
   def self.for_player(player)
