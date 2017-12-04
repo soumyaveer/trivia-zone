@@ -19,7 +19,7 @@
 
         <div class="form-group <%=form_group_error_class_for(@topic,:name) %>">
           <%= f.label :name, "Create a new topic:", class: "control-label" %>
-          <%= f.text_field :name , class: "form-control"%>
+          <%= f.text_field :name , class: "form-control", required: true %>
         </div>
 
         <%= f.submit "Create Topic", class: "btn btn-primary btn-sm"%>
