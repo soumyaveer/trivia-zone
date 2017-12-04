@@ -6,18 +6,18 @@
           <h3><%= topic.name %></h3>
           <table class="table table-bordered">
             <thead>
-            <tr class="table-header">
-              <th>Name</th>
-              <th>Score</th>
-            </tr>
+              <tr class="table-header">
+                <th>Name</th>
+                <th>Score</th>
+              </tr>
             </thead>
             <tbody>
-            <% topic.top_players.each do |player| %>
-              <tr>
-                <td><%= player.name.capitalize %></td>
-                <td><%= player.topic_score(topic) %></td>
-              </tr>
-            <% end %>
+              <% topic.top_players.each do |player| %>
+                <tr>
+                  <td><%= player.name.capitalize %></td>
+                  <td><%= player.topic_score(topic) %></td>
+                </tr>
+              <% end %>
             </tbody>
           </table>
         <% end %>
