@@ -40,7 +40,11 @@ class TriviaSessionsController < ApplicationController
       answers_attributes[question_id] = { answer_id: answer_hash[:answer_id] }
     end
 
-    { question: answers_attributes, trivia_id: trivia_session_params[:trivia_id] }
+    {
+      question: answers_attributes,
+      trivia_id: trivia_session_params[:trivia_id],
+      feedback: trivia_session_params[:feedback]
+    }
   end
 
   def load_trivia
