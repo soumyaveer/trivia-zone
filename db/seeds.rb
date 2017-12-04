@@ -99,18 +99,18 @@ trivia_12 = Trivia.create!(
 
 # create TriviaSession
 
-TriviaSession.create!(player_id: user_2.id, trivia_id: trivia_1.id)
-TriviaSession.create!(player_id: user_1.id, trivia_id: trivia_2.id)
-TriviaSession.create!(player_id: user_1.id, trivia_id: trivia_3.id)
-TriviaSession.create!(player_id: user_3.id, trivia_id: trivia_4.id)
-TriviaSession.create!(player_id: user_2.id, trivia_id: trivia_5.id)
-TriviaSession.create!(player_id: user_1.id, trivia_id: trivia_6.id)
-TriviaSession.create!(player_id: user_2.id, trivia_id: trivia_7.id)
-TriviaSession.create!(player_id: user_3.id, trivia_id: trivia_8.id)
-TriviaSession.create!(player_id: user_3.id, trivia_id: trivia_9.id)
-TriviaSession.create!(player_id: user_1.id, trivia_id: trivia_10.id)
-TriviaSession.create!(player_id: user_2.id, trivia_id: trivia_11.id)
-TriviaSession.create!(player_id: user_1.id, trivia_id: trivia_12.id)
+TriviaSession.create!(player_id: user_2.id, trivia_id: trivia_1.id, feedback:"yes")
+TriviaSession.create!(player_id: user_1.id, trivia_id: trivia_2.id, feedback: "no")
+TriviaSession.create!(player_id: user_1.id, trivia_id: trivia_3.id, feedback: "yes")
+TriviaSession.create!(player_id: user_3.id, trivia_id: trivia_4.id, feedback: "yes")
+TriviaSession.create!(player_id: user_2.id, trivia_id: trivia_5.id, feedback: "yes")
+TriviaSession.create!(player_id: user_1.id, trivia_id: trivia_6.id, feedback: "yes")
+TriviaSession.create!(player_id: user_2.id, trivia_id: trivia_7.id, feedback: "yes")
+TriviaSession.create!(player_id: user_3.id, trivia_id: trivia_8.id, feedback: "yes")
+TriviaSession.create!(player_id: user_3.id, trivia_id: trivia_9.id, feedback: "yes")
+TriviaSession.create!(player_id: user_1.id, trivia_id: trivia_10.id, feedback: "yes")
+TriviaSession.create!(player_id: user_2.id, trivia_id: trivia_11.id, feedback: "no")
+TriviaSession.create!(player_id: user_1.id, trivia_id: trivia_12.id, feedback: "yes")
 
 # create Questions for trivia1
 

@@ -1,6 +1,9 @@
 <div class="row">
   <div class="col-sm-10 col-offset-1">
     <h3>Your Score for <%= @trivia.title %> is <%= @trivia_session.score %></h3>
+    <% if @trivia_session.feedback.present? %>
+      <h4>Your feedback for Trivia was: <%= @trivia_session.feedback%></h4>
+    <% end %>
       <div>
         <%= link_to "Play Again", new_trivia_trivia_session_path(@trivia) %>
         <%= link_to "Back", "/", class: "pull-right" %>
