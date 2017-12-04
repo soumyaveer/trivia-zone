@@ -1,4 +1,4 @@
-#TriviaZone
+# TriviaZone
 A fun way of testing your knowledge
 
 ## Features:
