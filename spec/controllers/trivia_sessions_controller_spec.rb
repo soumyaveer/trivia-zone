@@ -39,6 +39,9 @@ describe TriviaSessionsController do
 
       expect(created_trivia_session.answers)
         .to match_array([answer_1_for_question_1, answer_2_for_question_2])
+
+      expect(response)
+        .to redirect_to(trivia_trivia_session_path(created_trivia_session.trivia, created_trivia_session.trivia))
     end
   end
 
