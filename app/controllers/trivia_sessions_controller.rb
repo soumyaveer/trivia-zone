@@ -20,6 +20,7 @@ class TriviaSessionsController < ApplicationController
 
   def new
     @trivia_session = TriviaSession.new(trivia: @trivia)
+    @trivia_session_topic = @trivia_session.trivia.topic
   end
 
   def show

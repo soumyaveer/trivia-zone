@@ -1,7 +1,7 @@
 <div class="row">
   <div class="col-sm-10 col-offset-1 play-trivia">
     <%= form_for @trivia_session, url: trivia_trivia_sessions_path(@trivia_session.trivia), method: :post do |f| %>
-      <h3><%= @trivia_session.trivia.topic.name %></h3>
+      <h3><%= @trivia_session_topic.name %></h3>
 
       <h4><%= "Title: #{@trivia_session.trivia.title}" %></h4>
 
