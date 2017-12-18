@@ -18,6 +18,12 @@ class TriviaSessionsController < ApplicationController
     redirect_to root_path
   end
 
+  def index
+    @user = User.find_by(id: params[:user_id])
+    @topic = Topic.find_by(id: params[:topic_id])
+    @played_trivias = @topic.trivias_played_by(@user)
+  end
+
   def new
     @trivia_session = TriviaSession.new(trivia: @trivia)
     @trivia_session_topic = @trivia_session.trivia.topic

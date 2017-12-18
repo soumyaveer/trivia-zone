@@ -14,7 +14,7 @@
             <tbody>
               <% topic.top_players.each do |player| %>
                 <tr>
-                  <td><%= player.name.capitalize %></td>
+                  <td><%= link_to player.name.capitalize, user_trivia_sessions_path(player, {topic_id: topic}) %></td>
                   <td><%= player.topic_score(topic) %></td>
                 </tr>
               <% end %>
