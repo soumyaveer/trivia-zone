@@ -10,7 +10,7 @@ class TriviasController < ApplicationController
     if @trivia.save
       redirect_to topic_trivias_path(@topic)
     else
-      render :new, status: :unprocessable_entity
+      render :new
     end
   end
 

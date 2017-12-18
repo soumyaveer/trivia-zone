@@ -61,18 +61,18 @@ describe Question do
     end
 
     let(:question) do
-      Question.create(description: "Who was Catelyn Stark?", trivia: trivia)
+      Question.create!(description: "Who was Catelyn Stark?", trivia: trivia)
     end
 
     before do
-      @answer_1 = Answer.create(description: Faker::Lorem.word, question: question)
-      @answer_2 = Answer.create(description: Faker::Lorem.word,  question: question)
-      @answer3 = Answer.create(description: Faker::Lorem.word,  question: question)
-      @answer4 = Answer.create(description: Faker::Lorem.word, correct: true,  question: question)
+      @answer_1 = Answer.create!(description: Faker::Lorem.word, question: question)
+      @answer_2 = Answer.create!(description: Faker::Lorem.word, question: question)
+      @answer_3 = Answer.create!(description: Faker::Lorem.word, question: question)
+      @answer_4 = Answer.create!(description: Faker::Lorem.word, correct: true,  question: question)
     end
 
-    it 'should have four answer options' do
-      expect(question.answers).to match_array([@answer_1, @answer_2, @answer3, @answer4])
+    it 'should have multiple answers' do
+      expect(question.answers).to match_array([@answer_1, @answer_2, @answer_3, @answer_4])
     end
 
     it 'belongs to a trivia' do

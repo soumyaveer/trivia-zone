@@ -11,6 +11,7 @@ class TriviaSession < ApplicationRecord
     (self.answers.correct.size / self.answers.size.to_f) * 100.00
   end
 
+  #{"question"=>{"1"=>{"answer_id"=>"1"}, "2"=>{"answer_id"=>"4"}}}
   def question=(questions_hash)
     answer_attribute_sets = questions_hash.values
 
