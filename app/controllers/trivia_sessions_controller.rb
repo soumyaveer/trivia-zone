@@ -31,6 +31,10 @@ class TriviaSessionsController < ApplicationController
 
   def show
     @trivia_session = @trivia.trivia_sessions.find(params[:id])
+    respond_to do |format|
+      format.html { render :show }
+      format.json { render json: @trivia_session }
+    end
   end
 
   private
