@@ -1,14 +1,20 @@
 <div class="row">
   <div class="col-sm-10 col-offset-1">
-    <h3>Your Score for <%= @trivia_session.trivia.title %> is <%= @trivia_session.score %></h3>
+    <div class="js-result">
+
+    </div>
     <% if @trivia_session.feedback.present? %>
-      <h4>Your feedback for Trivia was: <%= @trivia_session.feedback%></h4>
+      <div class="js-feedback">
+
+      </div>
     <% end %>
       <div>
-        <%= link_to "Play Again", new_trivia_trivia_session_path(@trivia) %>
+        <%= link_to "Play Again", new_trivia_trivia_session_path(@trivia_session.trivia) %>
         <%= link_to "Back", "/", class: "pull-right" %>
       </div>
-
-
+    <div>
+      <a href="#" class="js-prev " data-id="<%= @trivia_session.id%>">...Prev</a>
+      <a href="#" class="js-next pull-right" data-id="<%=@trivia_session.id%>">Next...</a>
+    </div>
   </div>
 </div>

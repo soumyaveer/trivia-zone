@@ -10,12 +10,14 @@ Rails.application.routes.draw do
   resources :trivia_zone, only: [:index, :show]
 
   resources :trivias, only: [] do
-    resources :trivia_sessions, only: [:create, :destroy, :new, :show]
+    resources :trivia_sessions, only: [:create, :destroy, :new]
   end
 
   resources :users, only: [] do
     resources :trivia_sessions, only: [:index]
   end
+
+  resources :trivia_sessions, only: [:show]
 
   root "trivia_zone#index"
 end

@@ -1,5 +1,5 @@
 class TriviaSessionsController < ApplicationController
-  before_action :load_trivia, only: [:create, :new, :show, :destroy]
+  before_action :load_trivia, only: [:create, :new, :destroy]
 
   def create
     @trivia_session = @trivia.trivia_sessions.build(create_params)
@@ -30,7 +30,8 @@ class TriviaSessionsController < ApplicationController
   end
 
   def show
-    @trivia_session = @trivia.trivia_sessions.find(params[:id])
+    @trivia_session = current_user.trivia_sessions.find(params[:id])
+
     respond_to do |format|
       format.html { render :show }
       format.json { render json: @trivia_session }
