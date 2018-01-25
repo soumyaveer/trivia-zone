@@ -40,8 +40,8 @@
   <div class="col-sm-10 col-offset-1">
     <div>
       <%= link_to "Add Trivia", new_topic_trivia_path(@topic), class: "btn btn-primary" %>
-    </div>
       <%= link_to "Back", topics_path, class: "pull-right" %>
+    </div>
     <div>
       <a href="#" class="js-prev " data-id="<%= @topic.id%>">...Prev</a>
       <a href="#" class="js-next pull-right" data-id="<%=@topic.id%>">Next...</a>
