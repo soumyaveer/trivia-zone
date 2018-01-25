@@ -27,6 +27,10 @@ class TriviasController < ApplicationController
     @trivias = @topic.trivias
 
     @authored_trivias = @topic.trivias_authored_by(current_user)
+    respond_to do |format|
+      format.html { render :index }
+      format.json { render json: @topic }
+    end
   end
 
   def new
