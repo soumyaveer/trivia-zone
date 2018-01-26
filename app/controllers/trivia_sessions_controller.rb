@@ -6,7 +6,7 @@ class TriviaSessionsController < ApplicationController
     @trivia_session.player = self.current_user
 
     if @trivia_session.save
-      redirect_to trivia_trivia_session_path(@trivia, @trivia_session)
+      redirect_to trivia_session_path(@trivia_session)
     else
       render :new
     end
