@@ -2,12 +2,14 @@ $(document).ready(function(){
   var prevLinkElement = $(".js-prev");
   var nextLinkElement = $(".js-next");
   var id = prevLinkElement.attr("data-id");
-  var triviaSessionsUrl = "/trivia_sessions/" + id + ".json";
+  if (id) {
+    var triviaSessionsUrl = "/trivia_sessions/" + id + ".json";
 
-  loadCurrentResults(id, triviaSessionsUrl);
+    loadCurrentResults(id, triviaSessionsUrl);
 
-  prevLinkElement.on("click", loadPreviousResults);
-  nextLinkElement.on("click", loadNextResults);
+    prevLinkElement.on("click", loadPreviousResults);
+    nextLinkElement.on("click", loadNextResults);
+  }
 });
 
 function loadCurrentResults(id, triviaSessionsUrl){
