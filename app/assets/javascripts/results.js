@@ -1,5 +1,3 @@
-
-
 $(document).ready(function(){
   var prevLinkElement = $(".js-prev");
   var nextLinkElement = $(".js-next");

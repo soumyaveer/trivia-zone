@@ -22,6 +22,17 @@ class TopicsController < ApplicationController
     @topic = Topic.new
   end
 
+  def show
+    @topic = Topic.find_by(id: params[:id])
+    @trivias = @topic.trivias
+
+    @authored_trivias = @topic.trivias_authored_by(current_user)
+    respond_to do |format|
+      format.html { render :show }
+      format.json { render json: @topic }
+    end
+  end
+
   private
 
   def topic_params

@@ -4,7 +4,7 @@ Rails.application.routes.draw do
   resources :leaderboards, only: [:index]
 
   resources :topics, only: [:create, :index, :new] do
-    resources :trivias, except: [:show]
+    resources :trivias, except: [:show, :index]
   end
 
   resources :trivia_zone, only: [:index, :show]
@@ -18,6 +18,8 @@ Rails.application.routes.draw do
   end
 
   resources :trivia_sessions, only: [:show]
+
+  resources :topics, only: [:show]
 
   root "trivia_zone#index"
 end
