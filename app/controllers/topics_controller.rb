@@ -1,12 +1,7 @@
 class TopicsController < ApplicationController
   def create
-    @topic = Topic.new(topic_params)
-
-    if @topic.save
-      redirect_to topics_path
-    else
-      render :index
-    end
+    @topic = Topic.create(topic_params)
+    render json: @topic, status: 201
   end
 
   def index
