@@ -14,7 +14,7 @@
 
       <h5>OR,</h5>
 
-      <div class="js-form">
+      <div>
         <%= form_for @topic, url: topics_path, method: :post do |f| %>
           <% if @topic.errors.present? %>
             <ul class="alert alert-danger list-unstyled">

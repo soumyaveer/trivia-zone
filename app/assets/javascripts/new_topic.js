@@ -11,7 +11,7 @@ Topic.prototype.renderName = function(){
 
 
 $(document).ready(function(){
-  $("form").submit(function(event){
+  $("form #js-form").submit(function(event){
     event.preventDefault();
 
     var values = $(this).serialize();
