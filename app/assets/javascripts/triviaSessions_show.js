@@ -1,4 +1,4 @@
-$(document).ready(function() {
+$(document).ready(() => {
   if($('body.trivia_sessions-show-page').length === 0) {
     return;
   }
@@ -30,12 +30,12 @@ function renderTemplate(triviaSession) {
   const triviaTitle = triviaSession.trivia.title;
   const playedTriviaScore = triviaSession.score;
 
-  $(".js-result").html("<h3>Your Score for " + triviaTitle + " is: " + playedTriviaScore + "</h3>");
+  $('.js-result').html(`<h3>Your Score for ${triviaTitle} is: ${playedTriviaScore}</h3>`);
 
   if (triviaFeedback) {
-    $(".js-feedback").html("<h4>Your feedback for Trivia was: " + triviaFeedback + "</h4>");
+    $('.js-feedback').html(`<h4>Your feedback for Trivia : ${triviaFeedback}</h4>`);
   } else {
-    $(".js-feedback").html("<p>No feedback available</p>");
+    $('.js-feedback').html(`<p>No feedback available</p>`);
   }
 
   $('.js-prev').data('id', triviaSession.meta.previous);
