@@ -1,22 +1,23 @@
-// TODO Separate out data loading and template rendering via a callback
+function renderTopicTrivias(topic){
+  $('.add-topic').text(`Topic: ${topic.name}`);
+  topic.trivias.forEach(function (trivia) {
+    let triviaUrl = `/trivias/${trivia.id}/trivia_sessions/new`;
+    let template = `<li>
+                       <a href="${triviaUrl}">${trivia.title}</a>
+                     </li><br/>`;
+    $(".js-trivias").append(template);
+  });
+}
 
-
-$(document).ready(function() {
+$(document).ready(() => {
   if($('body.topics-show-page').length === 0) {
     return;
   }
-  var topicId = $('.js-topic').attr("data-id");
-  if (topicId) {
-    var topicsTriviasUrl = "/topics/" + topicId + ".json";
 
-    $.getJSON(topicsTriviasUrl, function (data) {
-      var topicName = data.topic.name;
-      $('.add-topic').append("Topic: " + topicName);
+  let topicId = $('.js-topic').data('id');
+  let topicsTriviasUrl = `/topics/${topicId}.json`;
 
-      data.topic.trivias.forEach(function (trivia) {
-        var triviaUrl = "/trivias/" + trivia.id + "/trivia_sessions/new";
-        $(".js-trivias").append("<li><a href=" + triviaUrl + ">" + trivia.title + "</a></li><br/>");
-      });
+  $.getJSON(topicsTriviasUrl, function (data) {
+    renderTopicTrivias(data.topic);
     });
-  }
 });
