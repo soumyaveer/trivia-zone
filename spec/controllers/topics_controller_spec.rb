@@ -63,11 +63,27 @@ describe TopicsController do
       sign_in(@current_user, scope: :user)
     end
 
-    it 'creates a new topic' do
-      post :create, params: { topic: { name: 'topic-name' } }
+    context 'when format is HTML' do
+      it 'creates a new topic' do
+        post :create, params: { topic: { name: 'topic-name' } }
 
-      topic_1 = Topic.find_by(name: 'topic-name')
-      expect(topic_1.present?).to eql(true)
+        topic_1 = Topic.find_by(name: 'topic-name')
+        expect(topic_1.present?).to eql(true)
+      end
+    end
+
+
+    context 'when format is JSON' do
+      it 'creates a new topic in JSON format' do
+        post :create, params: { topic: { name: 'topic-name' } }, format: :json
+
+        topic_1 = Topic.find_by(name: 'topic-name')
+        json_response = JSON.parse(response.body).deep_symbolize_keys
+
+        expect(json_response[:topic][:id]).to eql(topic_1.id);
+        expect(json_response[:topic][:name]).to eql(topic_1.name);
+        expect(json_response[:topic][:trivias]).to eql([]);
+      end
     end
   end
 
