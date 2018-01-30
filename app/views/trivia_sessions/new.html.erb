@@ -1,6 +1,6 @@
 <div class="row">
   <div class="col-sm-10 col-offset-1 play-trivia">
-    <%= form_for @trivia_session, url: trivia_trivia_sessions_path(@trivia_session.trivia), method: :post do |f| %>
+    <%= form_for @trivia_session, url: trivia_trivia_sessions_path(@trivia, @trivia_session.trivia), method: :post do |f| %>
       <h3><%= @trivia_session_topic.name %></h3>
 
       <h4><%= "Title: #{@trivia_session.trivia.title}" %></h4>
@@ -31,6 +31,6 @@
 
       <%= f.submit "Submit", class: "btn btn-primary btn-sm" %>
     <% end %>
-    <%= link_to "Back", topic_trivias_path(@trivia_session.trivia.topic), class: "pull-right" %>
+    <%= link_to "Back", topic_path(@trivia_session.trivia.topic), class: "pull-right" %>
   </div>
 </div>

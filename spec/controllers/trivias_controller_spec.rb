@@ -73,56 +73,6 @@ describe TriviasController do
     end
   end
 
-  describe "GET index" do
-    context 'when user is not logged in' do
-      it 'redirects to login page' do
-        topic = FactoryBot.create(:topic)
-        get :index, params: { topic_id: topic.id }
-
-        expect(response).to redirect_to(new_user_session_url)
-      end
-    end
-
-    context 'when the user is logged in' do
-      before do
-        @current_user = FactoryBot.create(:user)
-        sign_in(@current_user, scope: :user)
-      end
-
-      it 'should render template index' do
-        topic = FactoryBot.create(:topic)
-
-        get :index, params: { topic_id: topic.id }
-
-        expect(response).to render_template('index')
-      end
-
-      it 'returns all the played trivias for the topic' do
-        topic_1 = FactoryBot.create(:topic)
-        topic_2 = FactoryBot.create(:topic)
-        trivia_1 = create_trivia(6, topic_1)
-        trivia_2 = create_trivia(10, topic_1)
-        create_trivia(10, topic_2)
-
-        get :index, params: { topic_id: topic_1.id }
-
-        expect(assigns(:trivias)).to match_array([trivia_1, trivia_2])
-      end
-
-      it 'should not return the trivias of another topic' do
-        topic_1 = FactoryBot.create(:topic)
-        topic_2 = FactoryBot.create(:topic)
-        trivia_1 = create_trivia(6, topic_1)
-        trivia_2 = create_trivia(10, topic_1)
-        trivia_3 = create_trivia(10, topic_2)
-
-        get :index, params: { topic_id: topic_1.id }
-
-        expect(assigns(:trivias)).not_to match_array([trivia_1, trivia_2, trivia_3])
-      end
-    end
-  end
-
   describe 'PATCH update' do
     let(:topic) { FactoryBot.create(:topic) }
 

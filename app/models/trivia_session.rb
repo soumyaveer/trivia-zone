@@ -4,7 +4,7 @@ class TriviaSession < ApplicationRecord
   has_and_belongs_to_many :answers
 
   scope :order_by_created_at, (-> { order(created_at: :desc) })
-
+  scope :order_by_created_at_asc, (-> { order(created_at: :asc, id: :asc) })
   def score
     return 0.0 if self.answers.blank?
 

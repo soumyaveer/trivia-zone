@@ -22,13 +22,6 @@ class TriviasController < ApplicationController
   def edit
   end
 
-  def index
-    @topic = Topic.find_by(id: params[:topic_id])
-    @trivias = @topic.trivias
-
-    @authored_trivias = @topic.trivias_authored_by(current_user)
-  end
-
   def new
     @topic = Topic.find(params[:topic_id])
     @trivia = @topic.trivias.build

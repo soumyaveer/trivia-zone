@@ -1,12 +1,11 @@
 <div class="row">
   <div class="col-sm-10 col-offset-sm-1">
-    <div>
+    <div class="js-topic" data-id="<%= @topic.id %>">
+      <h3 class="add-topic"></h3>
       <h3>Play Trivia:</h3>
       <% if @trivias.present? %>
-        <ul class="list-unstyled trivia-header">
-          <% @trivias.each do |trivia| %>
-            <li class="trivia-display"><%= link_to trivia.title, new_trivia_trivia_session_path(trivia) %></li>
-          <% end %>
+        <ul class="list-unstyled trivia-header js-trivias">
+
         </ul>
       <% else %>
         <p>This topic has no trivia. Be the first one to add a trivia!</p>
@@ -18,7 +17,7 @@
         <ul class="list-unstyled trivia-header">
           <% @authored_trivias.each do |authored_trivia| %>
             <li class="trivia-display">
-                <%= link_to authored_trivia.title, new_trivia_trivia_session_path(authored_trivia) %>
+              <%= link_to authored_trivia.title, new_trivia_trivia_session_path(authored_trivia) %>
               <div class="pull-right">
                 <span class="trivia-link">
                   <%= link_to "Edit Trivia", edit_topic_trivia_path(authored_trivia.topic, authored_trivia)%>
@@ -39,7 +38,7 @@
   <div class="col-sm-10 col-offset-1">
     <div>
       <%= link_to "Add Trivia", new_topic_trivia_path(@topic), class: "btn btn-primary" %>
-    </div>
       <%= link_to "Back", topics_path, class: "pull-right" %>
+    </div>
   </div>
 </div>

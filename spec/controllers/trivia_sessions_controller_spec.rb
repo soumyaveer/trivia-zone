@@ -41,7 +41,7 @@ describe TriviaSessionsController do
         .to match_array([answer_1_for_question_1, answer_2_for_question_2])
 
       expect(response)
-        .to redirect_to(trivia_trivia_session_path(created_trivia_session.trivia, created_trivia_session.trivia))
+        .to redirect_to(trivia_session_path(created_trivia_session.trivia))
     end
   end
 
@@ -49,15 +49,41 @@ describe TriviaSessionsController do
     let(:current_user) { FactoryBot.create(:user) }
     before { sign_in(current_user, scope: :user) }
 
-    it 'returns the trivia session score' do
-      topic = FactoryBot.create(:topic)
-      trivia = create_trivia(10, topic)
-      trivia_session = create_trivia_session_with(4, current_user, trivia) # score 66
+    context "when format is HTML" do
+      it 'returns the trivia session score' do
+        topic = FactoryBot.create(:topic)
+        trivia = create_trivia(10, topic)
+        trivia_session = create_trivia_session_with(4, current_user, trivia) # score 66
 
-      get :show, params: { trivia_id: trivia.id, id: trivia_session.id }
+        get :show, params: { id: trivia_session.id }
 
-      expect(assigns(:trivia_session)).to eql(trivia_session)
-      expect(response).to render_template('show')
+        expect(assigns(:trivia_session)).to eql(trivia_session)
+        expect(response).to render_template('show')
+      end
+    end
+
+    context "when format is JSON" do
+      it "returns the specified trivia session along with previous and next trivia session ids as 'meta'" do
+        topic = FactoryBot.create(:topic)
+        trivia = FactoryBot.create(:trivia, topic: topic)
+
+        trivia_session_1 = FactoryBot.create(:trivia_session, trivia: trivia, player: current_user, created_at: 3.days.ago)
+        trivia_session_2 = FactoryBot.create(:trivia_session, trivia: trivia, player: current_user, created_at: 2.days.ago)
+        trivia_session_3 = FactoryBot.create(:trivia_session, trivia: trivia, player: current_user, created_at: 1.day.ago)
+
+        get :show, params: { id: trivia_session_2.id }, format: :json
+
+        expect(response.code).to eql("200")
+        json_response = JSON.parse(response.body).deep_symbolize_keys
+
+        expect(json_response[:trivia_session][:id]).to eql(trivia_session_2.id)
+        expect(json_response[:trivia_session][:feedback]).to eql(trivia_session_2.feedback)
+        expect(json_response[:trivia_session][:score]).to eql(trivia_session_2.score)
+        expect(json_response[:trivia_session][:trivia][:id]).to eql(trivia.id)
+        expect(json_response[:trivia_session][:trivia][:title]).to eql(trivia.title)
+        expect(json_response[:trivia_session][:meta][:previous]).to eql(trivia_session_1.id)
+        expect(json_response[:trivia_session][:meta][:next]).to eql(trivia_session_3.id)
+      end
     end
   end
 

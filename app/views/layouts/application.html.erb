@@ -8,7 +8,7 @@
     <%= javascript_include_tag 'application' %>
   </head>
 
-  <body>
+  <body class="<%= controller_name %>-<%= action_name %>-page">
     <% if user_signed_in? %>
       <%= render "navbar" %>
       <%= render "logged_in_user" %>

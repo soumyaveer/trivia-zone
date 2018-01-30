@@ -1,12 +1,12 @@
 class TriviaSessionsController < ApplicationController
-  before_action :load_trivia, only: [:create, :new, :show, :destroy]
+  before_action :load_trivia, only: [:create, :new, :destroy]
 
   def create
     @trivia_session = @trivia.trivia_sessions.build(create_params)
     @trivia_session.player = self.current_user
 
     if @trivia_session.save
-      redirect_to trivia_trivia_session_path(@trivia, @trivia_session)
+      redirect_to trivia_session_path(@trivia_session)
     else
       render :new
     end
@@ -30,7 +30,12 @@ class TriviaSessionsController < ApplicationController
   end
 
   def show
-    @trivia_session = @trivia.trivia_sessions.find(params[:id])
+    @trivia_session = current_user.trivia_sessions.find(params[:id])
+
+    respond_to do |format|
+      format.html { render :show }
+      format.json { render json: @trivia_session }
+    end
   end
 
   private
