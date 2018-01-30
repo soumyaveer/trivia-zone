@@ -1,5 +1,10 @@
+// TODO Separate out data loading and template rendering via a callback
+
+
 $(document).ready(function() {
-  //http://localhost:3000/topics/1
+  if($('body.topics-show-page').length === 0) {
+    return;
+  }
   var topicId = $('.js-topic').attr("data-id");
   if (topicId) {
     var topicsTriviasUrl = "/topics/" + topicId + ".json";
