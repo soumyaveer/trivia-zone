@@ -8,21 +8,22 @@ Topic.prototype.getNameWithTriviaCount = function(){
   return `${this.name} (${triviasLength})`;
 };
 
-$(document).ready(function(){
+$(document).ready(() => {
   if($('body.topics-new-page').length === 0) {
     return;
   }
 
-  $("form").submit(function(event){
+  $('form').submit(function(event){
    event.preventDefault();
    let values = $(this).serialize();
-   let posting = $.post("/topics", values);
+   let posting = $.post('/topics', values);
 
    posting.done(function(data){
      let topic = new Topic(data.topic);
      let topicDisplay = topic.getNameWithTriviaCount();
      let newTriviaUrl = `/topics/${topic.id}/trivias/new`;
-     $('#topicName').append("<a href=" + newTriviaUrl + ">" + topicDisplay + "</a>");
+     let template = `<a href="${newTriviaUrl}">${topicDisplay}</a>`;
+     $('#topicName').append(template);
    });
    $('#topic_name').val(' ');
   });
