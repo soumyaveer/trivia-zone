@@ -38,14 +38,17 @@ function renderTemplate(triviaSession) {
     $('.js-feedback').html(`<p>No feedback available</p>`);
   }
 
+  $('.js-next').html('Next...');
+  $('.js-prev').html('...Prev');
+
   $('.js-prev').data('id', triviaSession.meta.previous);
   $('.js-next').data('id', triviaSession.meta.next);
 
   if (!triviaSession.meta.previous) {
     $(".js-prev").text('');
   }
-
   if (!triviaSession.meta.next) {
+
     $(".js-next").text('');
   }
 }
