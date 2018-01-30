@@ -15,20 +15,44 @@ describe TopicsController do
         sign_in(@current_user, scope: :user)
       end
 
-      it 'should render template index' do
-        get :index
+      context 'when format is HTML' do
 
-        expect(response).to render_template('index')
+        it 'should render template index' do
+          get :index
+
+          expect(response).to render_template('index')
+        end
+
+        it 'returns all the topics' do
+          topic_1 = FactoryBot.create(:topic)
+          topic_2 = FactoryBot.create(:topic)
+          topic_3 = FactoryBot.create(:topic)
+
+          get :index
+
+          expect(assigns("topics")).to match_array([topic_1, topic_2, topic_3])
+        end
       end
 
-      it 'returns all the topics' do
-        topic_1 = FactoryBot.create(:topic)
-        topic_2 = FactoryBot.create(:topic)
-        topic_3 = FactoryBot.create(:topic)
+      context 'when format is JSON' do
+        it 'renders template index' do
+          get :index, format: :json
 
-        get :index
+          expect(response.code).to eql("200")
+        end
 
-        expect(assigns("topics")).to match_array([topic_1, topic_2, topic_3])
+        it 'returns the topics in JSON format' do
+          topic_1 = FactoryBot.create(:topic)
+          topic_2 = FactoryBot.create(:topic)
+          topic_3 = FactoryBot.create(:topic)
+
+          get :index, format: :json
+
+          json_response = JSON.parse(response.body).deep_symbolize_keys
+          expect(json_response[:topics]).to eql([{id: topic_1.id , name: topic_1.name, trivias: []},
+                                                          {id: topic_2.id , name: topic_2.name, trivias: []},
+                                                          {id: topic_3.id , name: topic_3.name, trivias: []}]);
+        end
       end
     end
   end
