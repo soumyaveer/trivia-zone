@@ -2,6 +2,7 @@ $(document).ready(() => {
   if($('body.trivia_sessions-show-page').length === 0) {
     return;
   }
+
   $('.js-prev, .js-next').on('click', function() {
     renderTriviaSessionShow(($(this).data('id')));
   });
@@ -20,7 +21,8 @@ function renderTriviaSessionShow(triviaSessionId) {
 function findTriviaSession(triviaSessionId, afterFindHandler) {
   const triviaSessionsUrl = `/trivia_sessions/${triviaSessionId}.json`;
 
-  $.getJSON(triviaSessionsUrl, {}, function(data) {
+  $.getJSON(triviaSessionsUrl)
+    .done( function(data) {
     afterFindHandler(data.trivia_session);
   });
 }
