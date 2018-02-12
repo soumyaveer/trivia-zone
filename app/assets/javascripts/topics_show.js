@@ -15,9 +15,9 @@ $(document).ready(() => {
   }
 
   let topicId = $('.js-topic').data('id');
-  let topicsTriviasUrl = `/topics/${topicId}.json`;
+  let topicsTriviasUrl = `/topics/${topicId}`;
 
-  $.getJSON(topicsTriviasUrl, function (data) {
+  $.getJSON(`${topicsTriviasUrl}.json`, function (data) {
     renderTopicTrivias(data.topic);
     });
 });
