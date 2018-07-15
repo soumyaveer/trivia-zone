@@ -1,0 +1,25 @@
+version: 2
+jobs:
+  build:
+    working_directory: ~/app
+
+    docker:
+      - image: circleci/ruby:2.3.4-node-browsers
+        environment:
+          RACK_ENV: test
+          PGHOST: 127.0.0.1
+          PGUSER: root
+
+      - image: circleci/postgres:9.6.2-alpine
+        environment:
+          POSTGRES_USER: soumya
+          POSTGRES_DB: trivia-zone-test
+          POSTGRES_PASSWORD: ""
+
+    steps:
+      - checkout
+      - run: bundle install
+      - run: dockerize -wait tcp://localhost:5432 -timeout 1m # wait for Postgres server to start
+      - run: bundle exec rake db:create
+      - run: bundle exec rake db:schema:load
+      - run: bundle exec rake
