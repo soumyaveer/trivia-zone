@@ -1,3 +1,5 @@
+[![CircleCI](https://circleci.com/gh/soumyaveer/trivia-zone/tree/master.svg?style=svg)](https://circleci.com/gh/soumyaveer/trivia-zone/tree/master)
+
 # TriviaZone
 A fun way of testing your knowledge
 
