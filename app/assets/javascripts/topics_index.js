@@ -8,8 +8,6 @@ $(document).ready(() => {
   $.getJSON(topicsURL, (json) => {
     let topics = json.topics;
     topics.sort(function(a, b){
-      console.log("A",a.name);
-      console.log("B",b.name);
       if(a.name < b.name) {
         return -1
       }

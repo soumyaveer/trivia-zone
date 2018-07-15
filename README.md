@@ -13,9 +13,9 @@ A fun way of testing your knowledge
 
 1. Clone the repository (https://github.com/soumyaveer/trivia-zone)
 2. Run `bundle install`
-3. Run `rake db:migrate`
-4. Run `rails server`
-5. Go the path provided by rails server in your browser. You will be able to see the TriviaZone Sign in page.
+3. Run `rake db:setup`
+4. Run `foreman start -f Procfile.development` would start the app at http://localhost:5000.
+5. You will be able to see the TriviaZone Sign in page.
 
 ## Contributing:
 

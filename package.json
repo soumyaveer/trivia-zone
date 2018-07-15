@@ -1,5 +1,9 @@
 {
   "name": "trivia-zone",
   "private": true,
-  "dependencies": {}
+  "dependencies": {},
+  "engines": {
+    "node": "8.9.4",
+    "yarn": "1.5.1"
+  }
 }

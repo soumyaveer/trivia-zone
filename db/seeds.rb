@@ -36,7 +36,7 @@ trivia_3 = Trivia.create!(
 
 # create TriviaSession
 
-trivia_session_1 = TriviaSession.create!(player_id: user_1.id, trivia_id: trivia_1.id, feedback:"yes")
+trivia_session_1 = TriviaSession.create!(player_id: user_1.id, trivia_id: trivia_1.id, feedback: "yes")
 trivia_session_2 = TriviaSession.create!(player_id: user_1.id, trivia_id: trivia_2.id, feedback: "no")
 trivia_session_3 = TriviaSession.create!(player_id: user_2.id, trivia_id: trivia_1.id, feedback: "yes")
 trivia_session_4 = TriviaSession.create!(player_id: user_2.id, trivia_id: trivia_3.id, feedback: "yes")
@@ -86,7 +86,7 @@ question_310 = Question.create!(description: Faker::Lorem.sentence, trivia_id: t
 3.times do
   Answer.create!(description: Faker::Lorem.word, question_id: question_11.id)
 end
-answers_1 = Answer.create!(description: Faker::Lorem.word, correct: true, question_id: question_11.id)
+answer_1 = Answer.create!(description: Faker::Lorem.word, correct: true, question_id: question_11.id)
 
 3.times do
   Answer.create!(description: Faker::Lorem.word, question_id: question_12.id)
@@ -236,78 +236,99 @@ end
 answer_30 = Answer.create!(description: Faker::Lorem.word, correct: true, question_id: question_310.id)
 
 # create Answer_Trivias for trivia_session_1
+trivia_session_1.answers = [
+  answer_1,
+  answer_1,
+  answer_2,
+  answer_4,
+  answer_6,
+  answer_8,
+  answer_9,
+  answer_10,
+  answer_30,
+  answer_30
+]
 
-AnswersTriviaSession.create!(answer: answer_1, trivia_session: trivia_session_1)
-AnswersTriviaSession.create!(answer: answer_2, trivia_session: trivia_session_1)
-AnswersTriviaSession.create!(answer: answer_30, trivia_session: trivia_session_1)
-AnswersTriviaSession.create!(answer: answer_4, trivia_session: trivia_session_1)
-AnswersTriviaSession.create!(answer: answer_1, trivia_session: trivia_session_1)
-AnswersTriviaSession.create!(answer: answer_6, trivia_session: trivia_session_1)
-AnswersTriviaSession.create!(answer: answer_30, trivia_session: trivia_session_1)
-AnswersTriviaSession.create!(answer: answer_8, trivia_session: trivia_session_1)
-AnswersTriviaSession.create!(answer: answer_9, trivia_session: trivia_session_1)
-AnswersTriviaSession.create!(answer: answer_10, trivia_session: trivia_session_1)
+trivia_session_1.save!
 
 # create Answer_Trivias for trivia_session_2
+trivia_session_2.answers = [
+  answer_30,
+  answer_12,
+  answer_30,
+  answer_14,
+  answer_15,
+  answer_16,
+  answer_17,
+  answer_18,
+  answer_19,
+  answer_30
+]
 
-AnswersTriviaSession.create!(answer: answer_30, trivia_session: trivia_session_2)
-AnswersTriviaSession.create!(answer: answer_12, trivia_session: trivia_session_2)
-AnswersTriviaSession.create!(answer: answer_30, trivia_session: trivia_session_2)
-AnswersTriviaSession.create!(answer: answer_14, trivia_session: trivia_session_2)
-AnswersTriviaSession.create!(answer: answer_15, trivia_session: trivia_session_2)
-AnswersTriviaSession.create!(answer: answer_16, trivia_session: trivia_session_2)
-AnswersTriviaSession.create!(answer: answer_17, trivia_session: trivia_session_2)
-AnswersTriviaSession.create!(answer: answer_18, trivia_session: trivia_session_2)
-AnswersTriviaSession.create!(answer: answer_19, trivia_session: trivia_session_2)
-AnswersTriviaSession.create!(answer: answer_30, trivia_session: trivia_session_2)
-
+trivia_session_2.save!
 
 # create Answer_Trivias for trivia_session_3
+trivia_session_3.answers = [
+  answer_1,
+  answer_2,
+  answer_3,
+  answer_4,
+  answer_5,
+  answer_6,
+  answer_7,
+  answer_8,
+  answer_9,
+  answer_1
+]
 
-AnswersTriviaSession.create!(answer: answer_1, trivia_session: trivia_session_3)
-AnswersTriviaSession.create!(answer: answer_2, trivia_session: trivia_session_3)
-AnswersTriviaSession.create!(answer: answer_3, trivia_session: trivia_session_3)
-AnswersTriviaSession.create!(answer: answer_4, trivia_session: trivia_session_3)
-AnswersTriviaSession.create!(answer: answer_5, trivia_session: trivia_session_3)
-AnswersTriviaSession.create!(answer: answer_6, trivia_session: trivia_session_3)
-AnswersTriviaSession.create!(answer: answer_7, trivia_session: trivia_session_3)
-AnswersTriviaSession.create!(answer: answer_8, trivia_session: trivia_session_3)
-AnswersTriviaSession.create!(answer: answer_9, trivia_session: trivia_session_3)
-AnswersTriviaSession.create!(answer: answer_1, trivia_session: trivia_session_3)
+trivia_session_3.save!
 
 # create Answer_Trivias for trivia session_4
+trivia_session_4.answers = [
+  answer_21,
+  answer_1,
+  answer_23,
+  answer_24,
+  answer_25,
+  answer_26,
+  answer_27,
+  answer_1,
+  answer_1,
+  answer_1
+]
 
-AnswersTriviaSession.create!(answer: answer_21, trivia_session: trivia_session_4)
-AnswersTriviaSession.create!(answer: answer_1, trivia_session: trivia_session_4)
-AnswersTriviaSession.create!(answer: answer_23, trivia_session: trivia_session_4)
-AnswersTriviaSession.create!(answer: answer_24, trivia_session: trivia_session_4)
-AnswersTriviaSession.create!(answer: answer_25, trivia_session: trivia_session_4)
-AnswersTriviaSession.create!(answer: answer_26, trivia_session: trivia_session_4)
-AnswersTriviaSession.create!(answer: answer_27, trivia_session: trivia_session_4)
-AnswersTriviaSession.create!(answer: answer_1, trivia_session: trivia_session_4)
-AnswersTriviaSession.create!(answer: answer_1, trivia_session: trivia_session_4)
-AnswersTriviaSession.create!(answer: answer_1, trivia_session: trivia_session_4)
+trivia_session_4.save!
+
 
 # create Answer_Trivias for trivia session_5
-AnswersTriviaSession.create!(answer: answer_11, trivia_session: trivia_session_5)
-AnswersTriviaSession.create!(answer: answer_12, trivia_session: trivia_session_5)
-AnswersTriviaSession.create!(answer: answer_13, trivia_session: trivia_session_5)
-AnswersTriviaSession.create!(answer: answer_1, trivia_session: trivia_session_5)
-AnswersTriviaSession.create!(answer: answer_15, trivia_session: trivia_session_5)
-AnswersTriviaSession.create!(answer: answer_16, trivia_session: trivia_session_5)
-AnswersTriviaSession.create!(answer: answer_1, trivia_session: trivia_session_5)
-AnswersTriviaSession.create!(answer: answer_18, trivia_session: trivia_session_5)
-AnswersTriviaSession.create!(answer: answer_19, trivia_session: trivia_session_5)
-AnswersTriviaSession.create!(answer: answer_20, trivia_session: trivia_session_5)
+trivia_session_5.answers = [
+  answer_11,
+  answer_12,
+  answer_13,
+  answer_1,
+  answer_15,
+  answer_16,
+  answer_1,
+  answer_18,
+  answer_19,
+  answer_20
+]
+
+trivia_session_5.save!
+
 
 # create Answer_Trivias for trivia session_6
-AnswersTriviaSession.create!(answer: answer_21, trivia_session: trivia_session_6)
-AnswersTriviaSession.create!(answer: answer_22, trivia_session: trivia_session_6)
-AnswersTriviaSession.create!(answer: answer_23, trivia_session: trivia_session_6)
-AnswersTriviaSession.create!(answer: answer_24, trivia_session: trivia_session_6)
-AnswersTriviaSession.create!(answer: answer_25, trivia_session: trivia_session_6)
-AnswersTriviaSession.create!(answer: answer_26, trivia_session: trivia_session_6)
-AnswersTriviaSession.create!(answer: answer_27, trivia_session: trivia_session_6)
-AnswersTriviaSession.create!(answer: answer_28, trivia_session: trivia_session_6)
-AnswersTriviaSession.create!(answer: answer_29, trivia_session: trivia_session_6)
-AnswersTriviaSession.create!(answer: answer_30, trivia_session: trivia_session_6)
+trivia_session_6.answers = [
+  answer_21,
+  answer_22,
+  answer_23,
+  answer_24,
+  answer_25,
+  answer_26,
+  answer_27,
+  answer_28,
+  answer_29,
+  answer_30
+]
+
+trivia_session_6.save!

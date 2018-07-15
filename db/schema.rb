@@ -12,6 +12,9 @@
 
 ActiveRecord::Schema.define(version: 20171204015147) do
 
+  # These are extensions that must be enabled in order to support this database
+  enable_extension "plpgsql"
+
   create_table "answers", force: :cascade do |t|
     t.text "description"
     t.integer "question_id"
