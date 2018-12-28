@@ -19,6 +19,15 @@ A fun way of testing your knowledge
 4. Run `foreman start -f Procfile.development` would start the app at http://localhost:5000.
 5. You will be able to see the TriviaZone Sign in page.
 
+## Tech:
+
+* Rails 5
+* Bootstrap
+* PostgreSQL
+* SCSS
+* JQuery
+* Heroku
+
 ## Contributing:
 
 Bug reports and pull requests are welcome on GitHub at https://github.com/soumyaveer/trivia-zone
