@@ -26,6 +26,7 @@ A fun way of testing your knowledge
 * PostgreSQL
 * SCSS
 * JQuery
+* CircleCI
 * Heroku
 
 ## Contributing:
