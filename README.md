@@ -26,6 +26,7 @@ A fun way of testing your knowledge
 * PostgreSQL
 * SCSS
 * JQuery
+* Rspec, factory_bot
 * CircleCI
 * Heroku
 
